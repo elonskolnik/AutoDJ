@@ -6,7 +6,7 @@
 #define FINALPROJECTITDS_SONG_H
 
 
-class song {
+class Song {
 
 private:
     std::string artist;
