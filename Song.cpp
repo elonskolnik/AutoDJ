@@ -30,5 +30,6 @@ void Song::addToPlayCount(){
     playCount++;
 }
 void Song::addToPlayCount(int i){
-    playCount=playCount+i;
+    playCount=playCount+1;
+
 }
