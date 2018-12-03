@@ -3,13 +3,14 @@
 //
 #include <iostream>
 #include "Playlist.h"
+#include "SongList.h"
 
 //constructor
     Playlist::Playlist(std::string name){
         this->name = name;
 
         //external mapList - that includes song Name and artist name keys, then the pointer is stored in the arraylist thing
-        this->songList= new songList(10);
+        this->songList= new SongList(10);
 
         //if upNext is nullptr, that means that the playlist is empty
         //****NOTE FOR DJ implementation - know that the playlist is empty
