@@ -43,13 +43,13 @@
         else{
             songCount+=1;
         }
-        return
+        return "something";
 }
     float Playlist::calcDuration(){
         return this->songList->duration;
 }
     std::string Playlist::getInfo(){
-        return this->toString();
+        return this->songList->toString();
 }
 
 
