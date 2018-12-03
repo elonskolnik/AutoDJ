@@ -9,11 +9,14 @@
 //but hopefully this will serve as a sufficient prototype and we'll tell him that we have to revamp the interface a bit
 
 int main(){
+    Library* DJLibrary = new Library;
     std::cout<<"Hello Ryan" <<std::endl;
     std::cout<<"" <<std::endl;
 
     bool program = true;
     std::string command;
+    std::string IndivCommand;
+    std::string IndivCommand2;
 
     std::cout<<"Welcome to the revolutionary Auto DJ." <<std::endl;
     std::cout<<"You're whole universe is about to change." <<std::endl;
@@ -28,12 +31,37 @@ int main(){
         if(command=="help"){
             std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, quit" <<std::endl;
         } else if (command == "library"){
+            DJLibrary->songsInfo();
+
+            //I think we will have to revisit this and ensure that it handles situations in which there's nothing in the library
 
         } else if (command == "artist"){
+            std::cout<<"Please enter the name of the artist whose songs you want to find." <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            DJLibrary->artistInfo(IndivCommand);
+
+            //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
         } else if (command == "song"){
+            std::cout<<"Please enter the name of the song." <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            std::cout<<"Please enter the name of the artist of " << IndivCommand << std::endl;
+            std::getline(std::cin, IndivCommand2);
+
+
+            DJLibrary->songInfo(IndivCommand, IndivCommand2);
+
+            //W***** We need to add some sort of functionality like this probably in the library
+
+            //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
+
 
         } else if (command == "import"){
+            std::cout<<"We haven't programmed this command yet. But stayed tune " << IndivCommand << std::endl;
+
+            //come back and program this command.
 
         } else if (command == "discontinue"){
 
@@ -57,6 +85,8 @@ int main(){
             //we may have to revist this and deal with deconstruction or something, idk
         } else{
             std::cout<<"Error. System could not process your command." <<std::endl;
+            std::cout<<"Please try again." <<std::endl;
+
         }
     }
 
