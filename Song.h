@@ -5,7 +5,7 @@
 #ifndef FINALPROJECTITDS_SONG_H
 #define FINALPROJECTITDS_SONG_H
 
-
+#include <iostream>
 class Song {
 
 private:
@@ -15,7 +15,7 @@ private:
 	int playCount;
 
 public:
-    Song::Song(std::string title, std::string artist, float duration);
+    Song(std::string title, std::string artist, float duration);
 	std::string getInfo();
 	std::string getArtist();
 	std::string getTitle();

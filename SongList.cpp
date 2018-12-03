@@ -14,7 +14,7 @@ SongList::SongList(int initialCapacity){
     currCapacity = initialCapacity;
     array = new Song[currCapacity];
     currItemCount = 0;
-    songList
+    songList = n
 }
 
 /**
@@ -24,7 +24,7 @@ SongList::SongList(int initialCapacity){
  *        the old array is deleted.
  */
 void SongList::doubleCapacity(){
-    int* newArray = new int[this->currCapacity*2];
+    Song* newArray = new Song[this->currCapacity*2];
     for(int i = 0; i < currItemCount; i++){
         newArray[i] = array[i];
     }
