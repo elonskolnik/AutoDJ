@@ -5,11 +5,12 @@
 #ifndef PROJECTPLAYLIST_PLAYLIST_H
 #define PROJECTPLAYLIST_PLAYLIST_H
 #include <iostream>
+#include "SongList.cpp"
 
 
 class Playlist {
     std::string name;
-    mapList* songList;
+    SongList* songList;
     int songCount;
 
 
@@ -22,6 +23,7 @@ public:
     std::string playNext();
     float calcDuration();
     std::string getInfo();
+    std::string getTitle();
 
 
 };

@@ -51,7 +51,7 @@ int main(){
             std::getline(std::cin, IndivCommand2);
 
 
-            DJLibrary->songInfo(IndivCommand, IndivCommand2);
+            //DJLibrary->songInfo(IndivCommand, IndivCommand2);
 
             //W***** We need to add some sort of functionality like this probably in the library
 
@@ -65,7 +65,9 @@ int main(){
 
         } else if (command == "discontinue"){
 
+
         } else if (command == "playlists"){
+
 
         } else if (command == "playlist"){
 
