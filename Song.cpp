@@ -14,7 +14,7 @@ Song::Song(std::string title, std::string artist, float duration){
 }
 std::string Song::getInfo(){
     std::string newString="";
-    newString=newString+artist+" "+title+" "+duration;
+    newString=newString+artist+" "+title+" +"duration;
 }
 
 std::string Song::getArtist(){
