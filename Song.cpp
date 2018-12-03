@@ -13,8 +13,7 @@ Song::Song(std::string title, std::string artist, float duration){
     this->playCount=0;
 }
 std::string Song::getInfo(){
-    std::string newString="";
-    newString=newString+artist+" "+title+" +"duration;
+    return artist+" "+title+" "+std::to_string(duration);
 }
 
 std::string Song::getArtist(){
