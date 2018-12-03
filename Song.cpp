@@ -6,29 +6,29 @@
 #include "LinkedNode.h"
 
 //Constructor
-song::song(std::string title, std::string artist, float duration){
+Song::Song(std::string title, std::string artist, float duration){
     this->title=title;
     this->artist=artist;
     this->duration=duration;
     this->playCount=0;
 }
-std::string getInfo(){
+std::string Song::getInfo(){
     std::string newString="";
     newString=newString+artist+" "+title+" "+duration;
 }
 
-std::string getArtist(){
+std::string Song::getArtist(){
     return artist;
 }
-std::string getTitle(){
+std::string Song::getTitle(){
     return title;
 }
-float getDuration(){
+float Song::getDuration(){
     return duration;
 }
-void addToPlayCount(){
+void Song::addToPlayCount(){
     playCount++;
 }
-void addToPlayCount(int i){
+void Song::addToPlayCount(int i){
     playCount=playCount+i;
 }
