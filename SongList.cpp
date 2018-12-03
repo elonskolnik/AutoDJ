@@ -1,6 +1,7 @@
 #include <stdexcept>
 #include <string>
 #include "Song.h"
+#include "SongList.h"
 
 /**
  * Constructor

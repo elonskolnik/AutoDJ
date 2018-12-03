@@ -2,8 +2,8 @@
 // Created by Pax on 12/3/2018.
 //
 
-
-#include "LinkedNode.h"
+#include <iostream>
+#include "Song.h"
 
 //Constructor
 Song::Song(std::string title, std::string artist, float duration){
