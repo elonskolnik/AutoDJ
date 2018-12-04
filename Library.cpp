@@ -5,15 +5,26 @@
 #include "Playlist.h"
 
 //Constructor
-Library::Library(){
+Library::Library(int playlistCapacity){
     songList = new SongList(10);
-    playlists = new Playlist[10];
+    playlists = new Playlist*[10];
     playlistCount = 0;
+    this->playlistCapacity = playlistCapacity;
 }
 
 //Destructor
 Library::~Library(){
+    //todo
+}
 
+void Library::doubleCapacity(){
+    Playlist** newArray = new Playlist*[this->playlistCapacity*2];
+    for(int i = 0; i < playlistCount; i++){
+        newArray[i] = playlists[i];
+    }
+    delete[] playlists;
+    playlists = newArray;
+    playlistCapacity *= 2;
 }
 
 void Library::importSong(std::string title, std::string artist, float duration){
@@ -22,6 +33,9 @@ void Library::importSong(std::string title, std::string artist, float duration){
 }
 
 void Library::newPlaylist(std::string name){
+    if(playlistCapacity <= playlistCount-1) {
+        doubleCapacity();
+    }
     Playlist* newPlaylist = new Playlist(name);
     playlists[playlistCount] = newPlaylist;
     playlistCount++;
@@ -29,7 +43,10 @@ void Library::newPlaylist(std::string name){
 
 //creates a new playlist of the given length composed of randomly selected songs
 void Library::genRandomPlaylist(std::string name, float duration){
-    Playlist newPlaylist = new Playlist(name, 0);
+    if(playlistCapacity <= playlistCount-1) {
+        doubleCapacity();
+    }
+    Playlist* newPlaylist = new Playlist(name);
     std::string added = new std::string[];
     while(newPlaylist->calcDuration() < duration){
 
@@ -40,12 +57,6 @@ void Library::genRandomPlaylist(std::string name, float duration){
 //removes the given song from the library of songs
 void Library::discontinue(std::string name, std::string artist){
     songList->removeSong(name, artist);
-}
-
-//remove all songs from the library and return information about whether any songs couldn’t be removed
-void Library::deleteAll(){
-    //does it delete the playlists too?
-    //todo
 }
 
 //save the current library to a file
@@ -71,7 +82,7 @@ std::string Library::playlistsInfo(){
 
     std::string info = "{";
     for(int i = 0; i < playlistCount; i++){
-        info += playlists[0]->getTitle() + " " + playlists[0]->calcDuration();
+        info += playlists[i]->getTitle() + " " + std::to_string(playlists[i]->calcDuration());
         if(i < playlistCount -1){
             info += ", ";
         }

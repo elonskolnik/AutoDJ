@@ -13,7 +13,7 @@ SongList::SongList(int initialCapacity){
         throw std::invalid_argument("Size must be greater than 1");
     }
     currCapacity = initialCapacity;
-    array = new Song[currCapacity];
+    array = new Song*[currCapacity];
     currItemCount = 0;
 }
 
@@ -24,7 +24,7 @@ SongList::SongList(int initialCapacity){
  *        the old array is deleted.
  */
 void SongList::doubleCapacity(){
-    Song* newArray = new Song[this->currCapacity*2];
+    Song** newArray = new Song*[this->currCapacity*2];
     for(int i = 0; i < currItemCount; i++){
         newArray[i] = array[i];
     }
@@ -43,7 +43,7 @@ SongList::~SongList(){
  * appends the new item to the end of the list
  * @post the list has an additional value in it, at the end
  */
-void SongList::addSong(Song *songToAdd){
+void SongList::addSong(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
@@ -51,7 +51,7 @@ void SongList::addSong(Song *songToAdd){
     currItemCount++;
 }
 
-void SongList::addAlphabetical(Song *songToAdd){
+void SongList::addAlphabetical(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
@@ -59,7 +59,7 @@ void SongList::addAlphabetical(Song *songToAdd){
         array[currItemCount] = songToAdd;
     }
     else {
-        std::string toAddTitle = songToAdd.getTitle();
+        std::string toAddTitle = songToAdd->getTitle();
         if(currItemCount == 1){
             if(toAddTitle.compare(array[0].getTitle()) > 0){
                 array[1] = array[0];

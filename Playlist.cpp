@@ -51,14 +51,18 @@
         return "something";
 }
     float Playlist::calcDuration(){
-        return this->songList->duration;
+        float duration = 0.0;
+        for(int i = 0; i < songCount; i++){
+            duration += songList[i]->getDuration();
+        }
+        return duration;
 }
     std::string Playlist::getInfo(){
         return this->songList->toString();
 }
 
     std::string Playlist::getTitle(){
-    return this->name;
+        return this->name;
 }
 
 

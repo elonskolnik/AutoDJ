@@ -9,12 +9,14 @@
 class Library {
 private:
     SongList* songList;
-    Playlist* playlists;
+    Playlist** playlists;
     int playlistCount;
+    int playlistCapacity;
+    void doubleCapacity();
 
 public:
     //Constructor
-    Library();
+    Library(int playlistCapacity);
 
     //Destructor
     ~Library();
@@ -28,9 +30,6 @@ public:
 
     //removes the given song from the library of songs
     void discontinue(std::string name, std::string artist);
-
-    //remove all songs from the library and return information about whether any songs couldn’t be removed
-    void deleteAll();
 
     //save the current library to a file
     void saveLib();

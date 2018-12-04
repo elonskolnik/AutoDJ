@@ -9,9 +9,7 @@
 //but hopefully this will serve as a sufficient prototype and we'll tell him that we have to revamp the interface a bit
 
 int main(){
-    Library* DJLibrary = new Library;
-    std::cout<<"Hello Ryan" <<std::endl;
-    std::cout<<"" <<std::endl;
+    Library* DJLibrary = new Library(5);
 
     bool program = true;
     std::string command;
@@ -74,7 +72,7 @@ int main(){
         } else if (command == "playlist"){
             std::cout<<"Please enter the name of the playlist you want more information about." <<std::endl;
             std::getline(std::cin, IndivCommand);
-            DJLibrary->playlistsInfo(IndivCommand);
+            DJLibrary->playlistInfo(IndivCommand);
 
         } else if (command == "new"){
             std::cout<<"Please enter the name of the new random playlist you want to create." <<std::endl;
@@ -101,7 +99,7 @@ int main(){
             std::cout<<"Please enter the duration of the playlist you want to create." << IndivCommand << std::endl;
             std::getline(std::cin, IndivCommand2);
 
-            DJLibrary->newPlaylist(IndivCommand, stoi(IndivCommand2));
+            DJLibrary->genRandomPlaylist(IndivCommand, stoi(IndivCommand2));
 
         } else if (command == "quit"){
             program = false;
