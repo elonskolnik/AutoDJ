@@ -17,6 +17,8 @@ int main(){
     std::string command;
     std::string IndivCommand;
     std::string IndivCommand2;
+    std::string IndivCommand3;
+
 
     std::cout<<"Welcome to the revolutionary Auto DJ." <<std::endl;
     std::cout<<"You're whole universe is about to change." <<std::endl;
@@ -50,13 +52,11 @@ int main(){
             std::cout<<"Please enter the name of the artist of " << IndivCommand << std::endl;
             std::getline(std::cin, IndivCommand2);
 
-
             //DJLibrary->songInfo(IndivCommand, IndivCommand2);
 
             //W***** We need to add some sort of functionality like this probably in the library
 
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
-
 
         } else if (command == "import"){
             std::cout<<"We haven't programmed this command yet. But stayed tune " << IndivCommand << std::endl;
@@ -65,21 +65,43 @@ int main(){
 
         } else if (command == "discontinue"){
 
+            //We are going to have to revist this one
 
         } else if (command == "playlists"){
+            DJLibrary->playlistsInfo();
 
 
         } else if (command == "playlist"){
+            std::cout<<"Please enter the name of the playlist you want more information about." <<std::endl;
+            std::getline(std::cin, IndivCommand);
+            DJLibrary->playlistsInfo(IndivCommand);
 
         } else if (command == "new"){
+            std::cout<<"Please enter the name of the new random playlist you want to create." <<std::endl;
+            DJLibrary->newPlaylist(IndivCommand);
 
         } else if (command == "add"){
 
+
+            //we are going to have to revisit this
+
+
         } else if (command == "remove"){
+
+            //we are going to have to revisit this
 
         } else if (command == "playnext"){
 
+            //we are going to have to revisit this
+
         } else if (command == "new random"){
+            std::cout<<"Please enter the name of the playlist you want to create." <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            std::cout<<"Please enter the duration of the playlist you want to create." << IndivCommand << std::endl;
+            std::getline(std::cin, IndivCommand2);
+
+            DJLibrary->newPlaylist(IndivCommand, stoi(IndivCommand2));
 
         } else if (command == "quit"){
             program = false;
@@ -91,7 +113,6 @@ int main(){
 
         }
     }
-
 
     return 0;
 }
