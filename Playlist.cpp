@@ -5,6 +5,11 @@
 #include "Playlist.h"
 
 //constructor
+    Playlist::Playlist(){
+      this->name = "junk";
+      this->songList= new SongList(10);
+      this->songCount  0;
+}
     Playlist::Playlist(std::string name){
         this->name = name;
 

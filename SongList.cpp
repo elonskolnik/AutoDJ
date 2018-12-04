@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <iostream>
 #include <string>
 #include "Song.h"
 #include "SongList.h"
@@ -14,7 +15,6 @@ SongList::SongList(int initialCapacity){
     currCapacity = initialCapacity;
     array = new Song[currCapacity];
     currItemCount = 0;
-    songList = n
 }
 
 /**
@@ -43,7 +43,7 @@ SongList::~SongList(){
  * appends the new item to the end of the list
  * @post the list has an additional value in it, at the end
  */
-void SongList::addSong(Song songToAdd){
+void SongList::addSong(Song *songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
@@ -51,7 +51,7 @@ void SongList::addSong(Song songToAdd){
     currItemCount++;
 }
 
-void SongList::addAlphabetical(Song songToAdd){
+void SongList::addAlphabetical(Song *songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
@@ -79,7 +79,7 @@ void SongList::addAlphabetical(Song songToAdd){
                         Song temp = array[i + 1];
                         array[i + 1] = songToAdd;
                         for (int i = i + 2; i < currItemCount; i++) {
-                            int temp2 = array[i];
+                            Song temp2 = array[i];
                             array[i] = temp;
                             temp = array[i + 1];
                             array[i + 1] = temp2;
@@ -89,7 +89,7 @@ void SongList::addAlphabetical(Song songToAdd){
             }
         }
     currItemCount++;
-}
+}}
 
 /**
 * gives a string representation of the current list
@@ -148,7 +148,7 @@ std::string SongList::findArtist(std::string artist){
     if(count == 0){
         return "{}";
     }
-    strCount = 0;
+    int strCount = 0;
     std::string artists = "{";
     for(int i = 0; i < currItemCount; i++){
         if(array[i].getArtist() == artist){
@@ -158,7 +158,7 @@ std::string SongList::findArtist(std::string artist){
                 artists += ", ";
             }
             else{
-                artists += "}"
+                artists += "}";
             }
         }
     }
@@ -166,7 +166,7 @@ std::string SongList::findArtist(std::string artist){
 }
 
 void SongList::removeSong(std::string title, std::string artist){
-    int index = -1
+    int index = -1;
     for(int i = 0; i < currItemCount; i++){
         if(array[i].getTitle() == title && array[i].getArtist() == artist){
             index = i;

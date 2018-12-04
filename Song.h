@@ -15,6 +15,7 @@ private:
 	int playCount;
 
 public:
+	Song();
     Song(std::string title, std::string artist, float duration);
 	std::string getInfo();
 	std::string getArtist();

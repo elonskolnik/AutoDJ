@@ -5,7 +5,6 @@
 #ifndef PROJECTPLAYLIST_PLAYLIST_H
 #define PROJECTPLAYLIST_PLAYLIST_H
 #include <iostream>
-#include "SongList.cpp"
 
 
 class Playlist {
@@ -15,6 +14,7 @@ class Playlist {
 
 
 public:
+    Playlist();
     Playlist(std::string name);
     ~Playlist();
     void removeSong(std::string title, std::string artist);

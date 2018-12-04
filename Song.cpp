@@ -6,6 +6,12 @@
 #include "Song.h"
 
 //Constructor
+Song::Song(){
+    title = "paul";
+    artist = "blart";
+    duration = 999;
+    playCount = 999;
+}
 Song::Song(std::string title, std::string artist, float duration){
     this->title=title;
     this->artist=artist;

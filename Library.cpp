@@ -22,7 +22,7 @@ void Library::importSong(std::string title, std::string artist, float duration){
 }
 
 void Library::newPlaylist(std::string name){
-    Playlist newPlaylist = new Playlist(name, 0);
+    Playlist* newPlaylist = new Playlist(name);
     playlists[playlistCount] = newPlaylist;
     playlistCount++;
 }
