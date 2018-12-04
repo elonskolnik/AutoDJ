@@ -3,7 +3,6 @@
 //
 #include <iostream>
 #include "Playlist.h"
-#include "SongList.h"
 
 //constructor
     Playlist::Playlist(std::string name){
@@ -51,5 +50,11 @@
     std::string Playlist::getInfo(){
         return this->songList->toString();
 }
+
+    std::string Playlist::getTitle(){
+    return this->name;
+}
+
+
 
 

@@ -17,7 +17,7 @@ Library::~Library(){
 }
 
 void Library::importSong(std::string title, std::string artist, float duration){
-    Song newSong = new Song(title, artist, duration);
+    Song* newSong = new Song(title, artist, duration);
     songList->addAlphabetical(newSong);
 }
 
@@ -30,7 +30,7 @@ void Library::newPlaylist(std::string name){
 //creates a new playlist of the given length composed of randomly selected songs
 void Library::genRandomPlaylist(std::string name, float duration){
     Playlist newPlaylist = new Playlist(name, 0);
-    std::string added = new std::string[]
+    std::string added = new std::string[];
     while(newPlaylist->calcDuration() < duration){
 
     }
