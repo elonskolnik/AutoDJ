@@ -9,6 +9,7 @@
 //but hopefully this will serve as a sufficient prototype and we'll tell him that we have to revamp the interface a bit
 
 int main(){
+    srand(time(NULL));
     Library* DJLibrary = new Library(5);
 
     bool program = true;
@@ -19,13 +20,13 @@ int main(){
 
 
     std::cout<<"Welcome to the revolutionary Auto DJ." <<std::endl;
-    std::cout<<"You're whole universe is about to change." <<std::endl;
+    std::cout<<"Your whole universe is about to change." <<std::endl;
     std::cout<<"" <<std::endl;
     std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, quit" <<std::endl;
     std::cout<<"" <<std::endl;
 
     while(program){
-        std::cout<<"Enter a command or enter 'help' for assistance" <<std::endl;
+        std::cout<<"Enter a command or enter 'help' for assistance:" <<std::endl;
         std::getline(std::cin, command);
 
         if(command=="help"){
@@ -36,7 +37,7 @@ int main(){
             //I think we will have to revisit this and ensure that it handles situations in which there's nothing in the library
 
         } else if (command == "artist"){
-            std::cout<<"Please enter the name of the artist whose songs you want to find." <<std::endl;
+            std::cout<<"Please enter the name of the artist whose songs you want to find:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
             DJLibrary->artistInfo(IndivCommand);
@@ -70,19 +71,30 @@ int main(){
 
 
         } else if (command == "playlist"){
-            std::cout<<"Please enter the name of the playlist you want more information about." <<std::endl;
+            std::cout<<"Please enter the name of the playlist you want more information about:" <<std::endl;
             std::getline(std::cin, IndivCommand);
             DJLibrary->playlistInfo(IndivCommand);
 
         } else if (command == "new"){
-            std::cout<<"Please enter the name of the new random playlist you want to create." <<std::endl;
+            std::cout<<"Please enter the name of the new playlist you want to create:" <<std::endl;
+            std::getline(std::cin, IndivCommand);
             DJLibrary->newPlaylist(IndivCommand);
+            std::cout<<"New playlist " + IndivCommand + " created." <<std::endl;
 
         } else if (command == "add"){
+            std::cout<<"Please enter the title of the playlist you want to add to:" << std::endl;
+            std::getline(std::cin, IndivCommand);
 
+            std::cout<<"Please enter the name of the song you want to add:" <<std::endl;
+            std::getline(std::cin, IndivCommand2);
 
-            //we are going to have to revisit this
+            std::cout<<"Please enter the artist of the song you want to add:" <<std::endl;
+            std::getline(std::cin, IndivCommand3);
 
+            Song* temp = DJLibrary->findSong(IndivCommand2, IndivCommand3);
+            DJLibrary->findPlaylist(IndivCommand)->addSong(temp);
+
+            std::cout<<"Song " + IndivCommand2 + " added to " + IndivCommand + "."<<std::endl;
 
         } else if (command == "remove"){
 
@@ -92,11 +104,11 @@ int main(){
 
             //we are going to have to revisit this
 
-        } else if (command == "new random"){
-            std::cout<<"Please enter the name of the playlist you want to create." <<std::endl;
+        } else if (command == "newrandom"){
+            std::cout<<"Please enter the name of the random playlist you want to create:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::cout<<"Please enter the duration of the playlist you want to create." << IndivCommand << std::endl;
+            std::cout<<"Please enter the duration of the playlist you want to create:" << IndivCommand << std::endl;
             std::getline(std::cin, IndivCommand2);
 
             DJLibrary->genRandomPlaylist(IndivCommand, stoi(IndivCommand2));

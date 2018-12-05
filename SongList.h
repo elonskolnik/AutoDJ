@@ -70,9 +70,11 @@ public:
      */
     std::string findArtist(std::string artist);
 
+    Song* findSong(std::string title, std::string artist);
+
     void removeSong(std::string title, std::string artist);
 
-
+    Song** getArray();
 };
 
 

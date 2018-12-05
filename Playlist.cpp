@@ -24,16 +24,15 @@
 
 //destructor
     Playlist::~Playlist(){
-        delete this->songList();
+        delete this->songList;
 }
 
     void Playlist::removeSong(std::string title, std::string artist){
         this->songList->removeSong(title,artist);
 }
-    void Playlist::addSong(std::string title, std::string artist){
-        this->songList->addSong(title,artist);
-
-    }
+    void Playlist::addSong(Song* songToAdd){
+        this->songList->addSong(songToAdd);
+}
     bool Playlist::isEmpty(){
         if(this->songList->isEmpty()){
             return true;
@@ -42,7 +41,7 @@
 
 }
     std::string Playlist::playNext(){
-        if(this->songList->itemCount <=this->songCount){
+        if(this->songList->itemCount() <=this->songCount){
             this->songCount=0;
         }
         else{
@@ -52,8 +51,8 @@
 }
     float Playlist::calcDuration(){
         float duration = 0.0;
-        for(int i = 0; i < songCount; i++){
-            duration += songList[i]->getDuration();
+        for(int i = 0; i < songList->itemCount(); i++){
+            duration += songList->getArray()[i]->getDuration();
         }
         return duration;
 }
@@ -64,6 +63,7 @@
     std::string Playlist::getTitle(){
         return this->name;
 }
+
 
 
 

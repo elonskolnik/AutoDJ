@@ -45,6 +45,12 @@ public:
 
     //return the contents of the given playlist
     std::string playlistInfo(std::string title);
+
+    SongList* getSongList();
+
+    Playlist* findPlaylist(std::string title);
+
+    Song* findSong(std::string title, std::string artist);
 };
 
 #endif //LIBRARY_H

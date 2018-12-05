@@ -46,10 +46,41 @@ void Library::genRandomPlaylist(std::string name, float duration){
     if(playlistCapacity <= playlistCount-1) {
         doubleCapacity();
     }
-    Playlist* newPlaylist = new Playlist(name);
-    std::string added = new std::string[];
-    while(newPlaylist->calcDuration() < duration){
 
+    bool isThere, check;
+
+    Playlist* newPlaylist = new Playlist(name);
+
+    //generate a random index and pick the song of that index in the list
+    int randNum = rand() % songList->itemCount() + 1;
+    Song* songToAdd = songList->getArray()[randNum];
+    newPlaylist->addSong(songToAdd);
+
+    std::string added[100] = {};
+    added[0] = songToAdd->getTitle();
+    int addedLength = 1;
+
+    //keep going until it reaches the given duration
+    while(newPlaylist->calcDuration() < duration){
+        isThere = false;
+        check = false;
+
+        //keeps going until it finds a song that wasn't used already
+        while(!check) {
+            int randNum = rand() % songList->itemCount() + 1;
+            songToAdd = songList->getArray()[randNum];
+            for(int i = 0; i < addedLength; i++){
+                if(songToAdd->getTitle() == added[i]){
+                    isThere = true;
+                }
+            }
+            if(!isThere){
+                check = true;
+            }
+        }
+        newPlaylist->addSong(songToAdd);
+        added[addedLength] = songToAdd->getTitle();
+        addedLength++;
     }
     playlistCount++;
 }
@@ -105,4 +136,25 @@ std::string Library::playlistInfo(std::string title){
         throw std::invalid_argument("No playlist called " + title + " in the current library");
     }
     return playlists[index]->getInfo();
+}
+
+SongList* Library::getSongList() {
+    return songList;
+}
+
+Playlist* Library::findPlaylist(std::string title){
+    int index = -1;
+    for(int i = 0; i < playlistCount; i++){
+        if(title == playlists[i]->getTitle()){
+            index = i;
+        }
+    }
+    if(index < 0){
+        throw std::invalid_argument("Could not find the given playlist");
+    }
+    return playlists[index];
+}
+
+Song* Library::findSong(std::string title, std::string artist){
+   return songList->findSong(title, artist);
 }

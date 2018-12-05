@@ -72,7 +72,7 @@ std::string SongList::toString(){
     }
     std::string str = "(";
     for(int i = 0; i < currItemCount; i++){
-        str += array[i].getInfo();
+        str += array[i]->getInfo();
         if(i < currItemCount -1){
             str += ", ";
         }
@@ -136,6 +136,19 @@ std::string SongList::findArtist(std::string artist){
     return artists;
 }
 
+Song* SongList::findSong(std::string title, std::string artist){
+    int index = -1;
+    for(int i = 0; i < currItemCount; i++){
+        if(title == array[i]->getTitle() && artist == array[i]->getArtist()){
+            index = i;
+        }
+    }
+    if(index < 0){
+        throw std::invalid_argument("Could not find the given song");
+    }
+    return array[index];
+}
+
 void SongList::removeSong(std::string title, std::string artist){
     int index = -1;
     for(int i = 0; i < currItemCount; i++){
@@ -150,5 +163,9 @@ void SongList::removeSong(std::string title, std::string artist){
         array[i] = array[i+1];
     }
     currItemCount--;
+}
+
+Song** SongList::getArray(){
+    return this->array;
 }
 
