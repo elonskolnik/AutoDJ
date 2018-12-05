@@ -57,7 +57,7 @@
         return duration;
 }
     std::string Playlist::getInfo(){
-        return this->songList->toString();
+        return "Total Duration: " + std::to_string(calcDuration()) + " " + songList->toString();
 }
 
     std::string Playlist::getTitle(){
