@@ -9,6 +9,7 @@
 
 
 class Playlist {
+private:
     std::string name;
     SongList* songList;
     int songCount;
