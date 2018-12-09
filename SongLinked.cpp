@@ -172,7 +172,7 @@ int SongLinked::getValueAt(int index){
 //FIX THIS !!!!!!!!!!!
 
 //O(n) it is proportional to the size of the LinkedList
-std::string SongLinked::find(std::string artist){
+std::string SongLinked::findArtist(std::string artist){
     LinkedNode*  count=front;
     bool artistExists=false;
     std::string artists = "{";

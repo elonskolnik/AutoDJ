@@ -4,8 +4,9 @@
 #include <stdexcept>
 #include <string>
 #include "Song.h"
+#include "List.h"
 
-class SongList {
+class SongList : public List {
 private:
     //pointer to the start of the array
     Song** array;

@@ -7,9 +7,10 @@
 
 #include "LinkedNode.h"
 #include "Song.h"
+#include "List.h"
 #include <iostream>
 
-class SongLinked {
+class SongLinked : public List {
 private:
     LinkedNode* front;
     LinkedNode* end;
@@ -30,9 +31,7 @@ public:
 
     void addSong(Song* songToAdd);
 
-    void insertAtEnd(int itemToAdd);
-
-    int getValueAt(int index);
+    void insertAt(Song* itemToAdd, int index);
 
     std::string toString();
 
@@ -42,17 +41,11 @@ public:
 
     void clearList();
 
-    std::string SongLinked::find(std::string artist);
+    std::string findArtist(std::string artist);
 
-    void insertAtFront(int itemToAdd);
+    Song* findSong(std::string title, std::string artist);
 
-    void insertAt(Song* itemToAdd, int index);
-
-    int removeValueAtEnd();
-
-    int removeValueAtFront();
-
-    int removeValueAt(int index);
+    void removeSong(std::string title, std::string artist);
 
 };
 
