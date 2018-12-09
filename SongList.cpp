@@ -66,10 +66,8 @@ void SongList::insertAt(Song* itemToAdd, int index) {
         delete[] oldArray;
         oldArray = nullptr;
         currItemCount += 1;
-
     }
 }
-
 
 
 void SongList::addAlphabetical(Song* songToAdd){
@@ -85,7 +83,6 @@ void SongList::addAlphabetical(Song* songToAdd){
                 insertAt(songToAdd,x);
             }
         }
-        array[currItemCount] = songToAdd;
     }
     currItemCount++;
 }
