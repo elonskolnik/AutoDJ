@@ -39,6 +39,58 @@ SongList::~SongList(){
     array = nullptr;
 }
 
+void SongList::insertAt(Song* itemToAdd, int index) {
+    if (index < 0 || index > currItemCount) {
+        throw std::out_of_range("no item to remove");
+    }
+    if (currItemCount < currCapacity) {
+        for (int x = currItemCount; x > index; x--) {
+            array[x] = array[x - 1];
+        }
+        array[index] = itemToAdd;
+        currItemCount += 1;
+
+    } else {
+        Song* *newArray = new Song*[currCapacity + 1];
+        newArray[0] = itemToAdd;
+        for (int x = 0; x < index; x++) {
+            newArray[x] = array[x];
+        }
+        newArray[index] = itemToAdd;
+        for (int x = index + 1; x < currCapacity; x++) {
+            newArray[x] = array[x - 1];
+        }
+        Song* *oldArray = array;
+        array = newArray;
+        newArray = nullptr;
+        delete[] oldArray;
+        oldArray = nullptr;
+        currItemCount += 1;
+
+    }
+}
+
+
+
+void SongList::addAlphabetical(Song* songToAdd){
+    if(currCapacity <= currItemCount-1) {
+        doubleCapacity();
+    }
+    if(currItemCount == 0) {
+        array[currItemCount] = songToAdd;
+    }
+    else{
+        for(int x=0; x<currItemCount; x++){
+            if (songToAdd->getTitle().compare(array[x]->getTitle())<0){
+                insertAt(songToAdd,x);
+            }
+        }
+        array[currItemCount] = songToAdd;
+    }
+    currItemCount++;
+}
+//Possibly get rid of this function below
+//_______________________REVISIT THIS!!!!!_________________________________________________________
 /**
  * appends the new item to the end of the list
  * @post the list has an additional value in it, at the end
@@ -47,19 +99,9 @@ void SongList::addSong(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
-    array[currItemCount] = songToAdd;
-    currItemCount++;
-}
-
-void SongList::addAlphabetical(Song* songToAdd){
-    if(currCapacity <= currItemCount-1) {
-        doubleCapacity();
-    }
-    if(currItemCount == 0){
-        array[currItemCount] = songToAdd;
-    }
-
-    currItemCount++;
+    addAlphabetical(songToAdd);
+    //array[currItemCount] = songToAdd;
+    // currItemCount++;
 }
 
 /**

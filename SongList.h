@@ -38,6 +38,8 @@ public:
      */
     void addSong(Song* songToAdd);
 
+    void insertAt(Song* itemToAdd, int index);
+
     void addAlphabetical(Song* songToAdd);
 
      /**
