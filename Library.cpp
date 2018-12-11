@@ -97,6 +97,9 @@ void Library::saveLib(){
 
 //return info about all the songs in the library
 std::string Library::songsInfo(){
+    if(songList->isEmpty()){
+        return "No songs are in the current library";
+    }
     return songList->toString();
 }
 

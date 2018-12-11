@@ -5,6 +5,7 @@
 #include <string>
 #include "Song.h"
 
+//abstract class to hide implementation
 class List {
 
 private:

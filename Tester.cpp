@@ -1,0 +1,1 @@
+//Handles automated testing for all the methods
