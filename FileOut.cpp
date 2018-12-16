@@ -8,16 +8,16 @@
 FileOut() {
 
 
-    std::string getSong(Song *currentSong) {
+    std::string getSong(Song* currentSong) {
         return currentSong->getInfo();
     }
-    std::string getSongList(SongList *currentSonglist) {
+    std::string getSongList(SongList* currentSonglist) {
         return currentSonglist->toString();
     }
-    std::string getPlayLists(Playlist *currentPlayList) {
+    std::string getPlayLists(Playlist* currentPlayList) {
         return currentPlayList->getInfo();
     }
-    void libraryToString(Library *currentLibrary) {
+    void libraryToString(Library* currentLibrary) {
         std::string newString = "PlayList: "getPlayLists(currentLibrary) + "/n""Song List: "getSongList(currentLibrary);
     }
 
@@ -54,7 +54,7 @@ FileOut() {
         }
     }
 
-    ifstream infile(filename);
+    std::ifstream infile(std::string filename);
     if (infile) {
         while (infile) {
             std::string line;
@@ -62,6 +62,5 @@ FileOut() {
 //do whatever you want with line…
         }
     } else {
-        throw std::FileNotFoundException("fiefi");
-
+        throw FileNotFoundException("This file was not found.");
     }}
