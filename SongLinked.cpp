@@ -88,17 +88,35 @@ void SongLinked::insertAtEnd(Song* itemToAdd){
     }
 }
 
+*Song SongLinked::removeValueAtEnd(){
+    if (isEmpty()){
+        throw std::out_of_range("LinkedList is Empty");
+    }
+    else if(front==end||currItemCount<=1){
+        int returnitem = end->getItem();
+        delete front;
+        front= nullptr;
+        end= nullptr;
+        currItemCount-=1;
+        return returnitem;
+    }
+    else{
+        int returnitem = end->getItem();
+        LinkedNode* nextptr = front;
+        for(int i=0; i<currItemCount-2;i++){
+            nextptr=nextptr->getNext();
+        }
+        delete end;
+        currItemCount-=1;
+        end=nextptr;
+        end->setNext(nullptr);
+        return returnitem;
+    }
+}
+
 void SongLinked::addSong(Song* songToAdd){
     insertAtEnd(songToAdd);
 }
-
-
-
-//Possibly get rid of this function below
-//_______________________REVISIT THIS!!!!!_________________________________________________________
-
-
-
 
 std::string SongLinked::toString(){
     if (currItemCount < 1) {
@@ -135,27 +153,8 @@ void SongLinked::clearList(){
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //O(n) gets bigger as the size of the list gets bigger
-int SongLinked::getValueAt(int index){
+*Song SongLinked::getValueAt(int index){
     if(index>=currItemCount||front== nullptr||index<0){
         throw std::out_of_range("Index is invalid");
     }
@@ -169,13 +168,6 @@ int SongLinked::getValueAt(int index){
     return nextptr->getItem();
 }
 
-
-
-
-
-//FIX THIS !!!!!!!!!!!
-
-//O(n) it is proportional to the size of the LinkedList
 std::string SongLinked::findArtist(std::string artist){
     LinkedNode*  count=front;
     bool artistExists=false;
@@ -198,50 +190,7 @@ std::string SongLinked::findArtist(std::string artist){
     }
 }
 
-
-
-/**
- * removes the item at the end of the list, and returns a copy of that item
- * @post the item at the end is removed from the list
- * @return a copy of the item at the end
- * @throws out_of_range exception if there is no item to remove
- */
-//O(1) it is the same every time because we have the end location
-int SongLinked::removeValueAtEnd(){
-    if (isEmpty()){
-        throw std::out_of_range("LinkedList is Empty");
-    }
-    else if(front==end||currItemCount<=1){
-        int returnitem = end->getItem();
-        delete front;
-        front= nullptr;
-        end= nullptr;
-        currItemCount-=1;
-        return returnitem;
-    }
-    else{
-        int returnitem = end->getItem();
-        LinkedNode* nextptr = front;
-        for(int i=0; i<currItemCount-2;i++){
-            nextptr=nextptr->getNext();
-        }
-        delete end;
-        currItemCount-=1;
-        end=nextptr;
-        end->setNext(nullptr);
-        //std::cout<< end->getItem() << " "<<currItemCount<< nextptr<< " "<<nextptr->getNext()<< std::endl;
-        return returnitem;
-    }
-}
-
-/**
- * removes the item at the front of the list, and returns a copy of that item
- * @post the item at the front is removed from the list, everything else is shifted down one
- * @return a copy of the item at index
- * @throws out_of_range exception if there is no item to remove
- */
-//O(1) it is the same every time because we have the front location
-int SongLinked::removeValueAtFront(){
+*Song SongLinked::removeValueAtFront(){
     if (isEmpty()){
         throw std::out_of_range("LinkedList is Empty");
     }
@@ -255,15 +204,7 @@ int SongLinked::removeValueAtFront(){
     }
 }
 
-/**
- * removes the item at index from the list, and returns a copy of that item
- * @param index the location from which to get the value
- * @post the item at index is removed from the list, everything else is shifted down one
- * @return a copy of the item at index
- * @throws out_of_range exception if index is invalid
- */
-//O(n) - because there's only one loop
-int SongLinked::removeValueAt(int index){
+*Song SongLinked::removeValueAt(int index){
     if(index>=currItemCount){
         throw std::out_of_range("Index is invalid");
     }
