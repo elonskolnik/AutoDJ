@@ -3,6 +3,7 @@
 #include "Playlist.h"
 #include "SongList.h"
 #include "Library.h"
+#include <fstream>
 
 
 //so we are probably going to have to change this a lot and basically have it start with the user adding a song and doing a whole list of questions and stuff
@@ -62,7 +63,7 @@ int main(){
     std::cout<<"Welcome to the revolutionary Auto DJ." <<std::endl;
     std::cout<<"Your whole universe is about to change." <<std::endl;
     std::cout<<"" <<std::endl;
-    std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, quit" <<std::endl;
+    std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, save, quit" <<std::endl;
     std::cout<<"" <<std::endl;
 
     while(program){
@@ -70,7 +71,7 @@ int main(){
         std::getline(std::cin, command);
 
         if(command=="help"){
-            std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, quit" <<std::endl;
+            std::cout<<"Possible commands are as follows: library, artist, song, import, discontinue, playlists, playlist, new, add, remove, playnext, newrandom, save, quit" <<std::endl;
         } else if (command == "library"){
             std::cout<<DJLibrary->songsInfo() <<std::endl;
 
@@ -153,7 +154,22 @@ int main(){
 
             std::cout<<"New playlist " <<IndivCommand <<" created." <<std::endl;
 
-        } else if (command == "quit"){
+        } else if (command == "save"){
+            std::cout<<"Please enter the name of the file you want to save the library to:" <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            std::ofstream outfile (IndivCommand);
+
+            DJLibrary->songsInfo();
+
+
+            DJLibrary->playlistsInfo();
+
+
+            std::cout<<"New file named" << IndivCommand << " has been written"<<std::endl;
+
+
+        }else if (command == "quit"){
             program = false;
 
             //we may have to revist this and deal with deconstruction or something, idk

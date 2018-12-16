@@ -8,16 +8,16 @@
 FileOut() {
 
 
-    std::string getSong(Song *currentSong) {
+    std::string getSong(Song* currentSong) {
         return currentSong->getInfo();
     }
-    std::string getSongList(SongList *currentSonglist) {
+    std::string getSongList(SongList* currentSonglist) {
         return currentSonglist->toString();
     }
-    std::string getPlayLists(Playlist *currentPlayList) {
+    std::string getPlayLists(Playlist* currentPlayList) {
         return currentPlayList->getInfo();
     }
-    void libraryToString(Library *currentLibrary) {
+    void libraryToString(Library* currentLibrary) {
         std::string newString = "PlayList: "getPlayLists(currentLibrary) + "/n""Song List: "getSongList(currentLibrary);
     }
 
@@ -63,5 +63,4 @@ FileOut() {
         }
     } else {
         throw FileNotFoundException("This file was not found.");
-
     }}
