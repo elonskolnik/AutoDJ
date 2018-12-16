@@ -24,7 +24,7 @@ SongLinked::~SongLinked(){
     }
 }
 
-void SongLinked::insertAt(Playlist* itemToAdd, int index){
+void SongLinked::insertAt(Song* itemToAdd, int index){
     if(index<0||index>currItemCount){
         throw std::out_of_range("Index is invalid");
     }

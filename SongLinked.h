@@ -31,7 +31,7 @@ public:
 
     void addSong(Song* songToAdd);
 
-    void insertAt(Playlist* itemToAdd, int index);
+    void insertAt(Song* itemToAdd, int index);
 
     std::string toString();
 
