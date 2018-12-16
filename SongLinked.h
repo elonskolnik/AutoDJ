@@ -16,10 +16,10 @@ private:
     LinkedNode* end;
     int currItemCount=0;
 
-
-    //Private to disable copying and assigning from outside class, don't implement these methods
     SongLinked(const SongLinked& arrayListToCopy);
+
     SongLinked& operator=(const SongLinked& arrayListToCopy);
+
 public:
 
     SongLinked();

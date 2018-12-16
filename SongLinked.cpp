@@ -118,6 +118,36 @@ void SongLinked::addSong(Song* songToAdd){
     insertAtEnd(songToAdd);
 }
 
+Song* findSong(std::string title, std::string artist){
+    LinkedNode*  count=front;
+    for(int i = 0; i < currItemCount; i++){
+        if(title == count->getTitle() && artist == count->getArtist()){
+            return count;
+        }
+        count=count->getNext();
+
+    }
+    if(front== nullptr){
+        throw std::invalid_argument("Could not find the given song");
+    }
+    return nullptr;
+}
+
+void removeSong(std::string title, std::string artist){
+    LinkedNode*  count=front;
+    for(int i = 0; i < currItemCount; i++){
+        if(title == count->getTitle() && artist == count->getArtist()){
+            return removeValueAt(i);
+        }
+        count=count->getNext();
+
+    }
+    if(front== nullptr){
+        throw std::invalid_argument("Could not find the given song");
+    }
+    return nullptr;
+}
+
 std::string SongLinked::toString(){
     if (currItemCount < 1) {
         return "{}";
@@ -182,7 +212,7 @@ std::string SongLinked::findArtist(std::string artist){
     }
     artists += "}";
 
-    if (artistExists==true){
+    if (artistExists){
         return artist;
     }
     else{
