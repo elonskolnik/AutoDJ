@@ -33,6 +33,10 @@ public:
 
     void insertAt(Song* itemToAdd, int index);
 
+    void insertAtEnd(Song* itemToAdd);
+
+    void insertAtFront(Song* itemToAdd);
+
     std::string toString();
 
     bool isEmpty();

@@ -142,7 +142,7 @@ void SongLinked::clearList(){
  * @post the list has an additional value in it, at the end
  */
 //O(1) always the same thing because the linkedlist has an end value
-void SongLinked::insertAtEnd(int itemToAdd){
+void SongLinked::insertAtEnd(Song* itemToAdd){
     LinkedNode* newNode = new LinkedNode(itemToAdd);
     //if front is nullptr, end should be nullptr too
     if (isEmpty()||front == nullptr){
@@ -213,7 +213,7 @@ std::string SongLinked::findArtist(std::string artist){
  *    all other items are shifted down by one index
  */
 //O(1) pretty consistent because we know where the front is
-void SongLinked::insertAtFront(int itemToAdd){
+void SongLinked::insertAtFront(Song* itemToAdd){
     LinkedNode* next = new LinkedNode(itemToAdd);
     if(front== nullptr){
         front = next;
