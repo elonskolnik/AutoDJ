@@ -155,15 +155,13 @@ std::string SongLinked::toString(){
     std::string text = "{";
     LinkedNode* nextptr = front;
     for (int x = 0; x <= currItemCount - 1; x++) {
-        text += std::to_string(nextptr->getItem());
+        text += std::to_string(nextptr->getItem()->getTitle());
         if (x < currItemCount - 1) {
             text += ", ";
         }
         nextptr=nextptr->getNext();
     }
-    // nextptr= nullptr;
     text += "}";
-    // std::cout<<text<<std::endl;
     return text;
 }
 
@@ -183,7 +181,6 @@ void SongLinked::clearList(){
     }
 }
 
-//O(n) gets bigger as the size of the list gets bigger
 Song* SongLinked::getValueAt(int index){
     if(index>=currItemCount||front== nullptr||index<0){
         throw std::out_of_range("Index is invalid");
