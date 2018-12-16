@@ -6,22 +6,21 @@
 #define LINKEDNODE_H
 
 #include "Song.h"
-#include "Playlist.h"
 
 
 
 class LinkedNode {
 
 private:
-    Playlist* item;
+    Song* item;
     LinkedNode* next;
 
 public:
-    LinkedNode(Playlist* item);
+    LinkedNode(Song* item);
     LinkedNode(const LinkedNode& nodeToCopy); //only copies item, next is set to nullptr
-    Playlist* getItem();
+    Song* getItem();
     LinkedNode* getNext();
-    void setItem(Playlist* newItem);
+    void setItem(Song* newItem);
     void setNext(LinkedNode* newNext);
 };
 

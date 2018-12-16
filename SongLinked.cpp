@@ -4,6 +4,8 @@
 
 #include "SongLinked.h"
 #include "LinkedNode.h"
+#include "Playlist.h"
+
 
 SongLinked::SongLinked(){
     front = nullptr;
@@ -22,7 +24,7 @@ SongLinked::~SongLinked(){
     }
 }
 
-void SongLinked::insertAt(Song* itemToAdd, int index){
+void SongLinked::insertAt(Playlist* itemToAdd, int index){
     if(index<0||index>currItemCount){
         throw std::out_of_range("Index is invalid");
     }
@@ -67,6 +69,10 @@ void SongLinked::addAlphabetical(Song* songToAdd){
     }
     currItemCount++;
 }
+
+
+
+
 //Possibly get rid of this function below
 //_______________________REVISIT THIS!!!!!_________________________________________________________
 
