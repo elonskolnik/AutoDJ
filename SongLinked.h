@@ -57,7 +57,7 @@ public:
 
     Song* getValueAt(int index);
 
-    float SongLinked::CalcDuration();
+    float CalcDuration();
 
     };
 
