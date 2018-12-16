@@ -1,5 +1,9 @@
 #include <fstream>
 
+#include "Playlist.h"
+#include "Song.h"
+#include "Library.h"
+
 FileOut() {
 
 
