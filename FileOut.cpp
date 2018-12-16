@@ -21,7 +21,7 @@ FileOut() {
         std::string newString = "PlayList: "getPlayLists(currentLibrary) + "/n""Song List: "getSongList(currentLibrary);
     }
 
-    void writeToFile(std::string fileName, String stringToAdd){
+    void writeToFile(std::string fileName, std::string stringToAdd){
         ofstream myfile;
         myfile.open (fileName,ios::out);
         myfile << stringToAdd<<"\n";
@@ -54,7 +54,7 @@ FileOut() {
         }
     }
 
-    ifstream infile(filename);
+    std::ifstream infile(std::string filename);
     if (infile) {
         while (infile) {
             std::string line;
@@ -62,6 +62,6 @@ FileOut() {
 //do whatever you want with line…
         }
     } else {
-        throw FileNotFoundException();
+        throw FileNotFoundException("This file was not found.");
 
     }}
