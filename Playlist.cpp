@@ -3,19 +3,20 @@
 //
 #include <iostream>
 #include "Playlist.h"
-#include "SongList.h"
+#include "SongLinked.h"
+
 
 //constructor
     Playlist::Playlist(){
       this->name = "junk";
-      this->songList= new SongList(10);
+      this->songLinked= new SongLinked();
       this->songCount = 0;
 }
     Playlist::Playlist(std::string name){
         this->name = name;
 
         //external mapList - that includes song Name and artist name keys, then the pointer is stored in the arraylist thing
-        this->songList= new SongList(10);
+        this->songLinked= new SongLinked();
 
         //if upNext is nullptr, that means that the playlist is empty
         //****NOTE FOR DJ implementation - know that the playlist is empty
@@ -24,24 +25,24 @@
 
 //destructor
     Playlist::~Playlist(){
-        delete this->songList;
+        delete this->songLinked;
 }
 
     void Playlist::removeSong(std::string title, std::string artist){
-        this->songList->removeSong(title,artist);
+        this->songLinked->removeSong(title,artist);
 }
     void Playlist::addSong(Song* songToAdd){
-        this->songList->addSong(songToAdd);
+        this->songLinked->addSong(songToAdd);
 }
     bool Playlist::isEmpty(){
-        if(this->songList->isEmpty()){
+        if(this->songLinked->isEmpty()){
             return true;
         }
         return false;
 
 }
     std::string Playlist::playNext(){
-        if(this->songList->itemCount() <=this->songCount){
+        if(this->songLinked->itemCount() <=this->songCount){
             this->songCount=0;
         }
         else{
@@ -50,14 +51,10 @@
         return "something";
 }
     float Playlist::calcDuration(){
-        float duration = 0.0;
-        for(int i = 0; i < songList->itemCount(); i++){
-            duration += songList->getArray()[i]->getDuration();
-        }
-        return duration;
+        return songLinked->CalcDuration();
 }
     std::string Playlist::getInfo(){
-        return "Total Duration: " + std::to_string(calcDuration()) + " " + songList->toString();
+        return "Total Duration: " + std::to_string(calcDuration()) + " " + songLinked->toString();
 }
 
     std::string Playlist::getTitle(){

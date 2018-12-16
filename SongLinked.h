@@ -57,6 +57,8 @@ public:
 
     Song* getValueAt(int index);
 
+    float SongLinked::CalcDuration();
+
     };
 
 #endif //AUTODJ_SONGLINKED_H

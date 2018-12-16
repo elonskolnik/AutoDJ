@@ -28,7 +28,6 @@ public:
 
     virtual void insertAt(Song* songToAdd, int index) =0;
 
-    virtual void addAlphabetical(Song* songToAdd) =0;
 
     virtual std::string toString() =0;
 

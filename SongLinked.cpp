@@ -255,3 +255,14 @@ Song* SongLinked::removeValueAt(int index){
         return returnItem;
     }
 }
+
+float SongLinked::CalcDuration(){
+    float duration;
+    LinkedNode* count = count;
+    for(int i = 0; i < currItemCount; i++){
+        duration += count->getItem->getDuration();
+        count=count->getNext();
+
+    }
+
+}
