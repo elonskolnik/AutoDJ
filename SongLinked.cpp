@@ -154,7 +154,7 @@ std::string SongLinked::toString(){
     std::string text = "{";
     LinkedNode* nextptr = front;
     for (int x = 0; x <= currItemCount - 1; x++) {
-        text += std::to_string(nextptr->getItem()->getTitle());
+        text += (nextptr->getItem()->getTitle());
         if (x < currItemCount - 1) {
             text += ", ";
         }

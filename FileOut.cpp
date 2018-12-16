@@ -1,6 +1,6 @@
 #include <fstream>
 
-FileOut::FileOut() {
+FileOut() {
 
 
     std::string getSong(Song *currentSong) {

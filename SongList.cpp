@@ -142,7 +142,7 @@ int SongList::itemCount(){
  * @post the list is empty, such that isEmpty() == true
  */
 void SongList::clearList(){
-    currItemCount == 0;
+    currItemCount = 0;
 }
 
 /**
