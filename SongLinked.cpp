@@ -88,12 +88,12 @@ void SongLinked::insertAtEnd(Song* itemToAdd){
     }
 }
 
-*Song SongLinked::removeValueAtEnd(){
+Song* SongLinked::removeValueAtEnd(){
     if (isEmpty()){
         throw std::out_of_range("LinkedList is Empty");
     }
     else if(front==end||currItemCount<=1){
-        int returnitem = end->getItem();
+        Song* returnitem = end->getItem();
         delete front;
         front= nullptr;
         end= nullptr;
@@ -101,7 +101,7 @@ void SongLinked::insertAtEnd(Song* itemToAdd){
         return returnitem;
     }
     else{
-        int returnitem = end->getItem();
+        Song* returnitem = end->getItem();
         LinkedNode* nextptr = front;
         for(int i=0; i<currItemCount-2;i++){
             nextptr=nextptr->getNext();
@@ -119,7 +119,7 @@ void SongLinked::addSong(Song* songToAdd){
 }
 
 Song* findSong(std::string title, std::string artist){
-    LinkedNode*  count=front;
+    LinkedNode* count=front;
     for(int i = 0; i < currItemCount; i++){
         if(title == count->getTitle() && artist == count->getArtist()){
             return count;
@@ -184,7 +184,7 @@ void SongLinked::clearList(){
 }
 
 //O(n) gets bigger as the size of the list gets bigger
-*Song SongLinked::getValueAt(int index){
+Song* SongLinked::getValueAt(int index){
     if(index>=currItemCount||front== nullptr||index<0){
         throw std::out_of_range("Index is invalid");
     }
@@ -220,12 +220,12 @@ std::string SongLinked::findArtist(std::string artist){
     }
 }
 
-*Song SongLinked::removeValueAtFront(){
+Song* SongLinked::removeValueAtFront(){
     if (isEmpty()){
         throw std::out_of_range("LinkedList is Empty");
     }
     else {
-        int returnItem = front->getItem();
+        Song* returnItem = front->getItem();
         LinkedNode* nextptr = front->getNext();
         delete front;
         front=nextptr;
@@ -234,7 +234,7 @@ std::string SongLinked::findArtist(std::string artist){
     }
 }
 
-*Song SongLinked::removeValueAt(int index){
+Song* SongLinked::removeValueAt(int index){
     if(index>=currItemCount){
         throw std::out_of_range("Index is invalid");
     }
@@ -250,7 +250,7 @@ std::string SongLinked::findArtist(std::string artist){
             next = next->getNext();
         }
 
-        int returnItem =next->getNext()->getItem();
+        Song* returnItem =next->getNext()->getItem();
 
         LinkedNode *deleteNode = next->getNext();
         next->setNext(next->getNext()->getNext());

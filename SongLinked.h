@@ -35,6 +35,8 @@ public:
 
     void insertAtFront(Song* itemToAdd);
 
+    Song* removeValueAtEnd();
+
     std::string toString();
 
     bool isEmpty();
@@ -49,6 +51,12 @@ public:
 
     void removeSong(std::string title, std::string artist);
 
-};
+    Song* removeValueAtFront();
+
+    Song* removeValueAt(int index);
+
+    Song* getValueAt(int index);
+
+    };
 
 #endif //AUTODJ_SONGLINKED_H
