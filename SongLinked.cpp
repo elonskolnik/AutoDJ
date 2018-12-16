@@ -3,6 +3,7 @@
 //
 
 #include "SongLinked.h"
+#include "LinkedNode.h"
 
 SongLinked::SongLinked(){
     front = nullptr;
@@ -25,6 +26,8 @@ void SongLinked::insertAt(Song* itemToAdd, int index){
     if(index<0||index>currItemCount){
         throw std::out_of_range("Index is invalid");
     }
+
+    //linked node to be templated
     LinkedNode* adder = new LinkedNode(itemToAdd);
     if(front== nullptr){
         front = adder;
