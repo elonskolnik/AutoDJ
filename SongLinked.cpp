@@ -56,29 +56,48 @@ void SongLinked::insertAt(Song* itemToAdd, int index){
     }
 }
 
-void SongLinked::addAlphabetical(Song* songToAdd){
-    if(currItemCount == 0) {
-        insertAt(songToAdd, 0);
+void SongLinked::insertAtFront(Song* itemToAdd){
+    LinkedNode* next = new LinkedNode(itemToAdd);
+    if(front== nullptr){
+        front = next;
+        end = next;
+        front->setNext(nullptr);
+        currItemCount+=1;
     }
-    else{
-        for(int x=0; x<currItemCount; x++){
-            if (songToAdd->getTitle().compare(array[x]->getTitle())<0){
-                insertAt(songToAdd,x);
-            }
-        }
+    else {
+        next->setNext(front);
+        front = next;
+        currItemCount+=1;
     }
-    currItemCount++;
 }
 
+void SongLinked::insertAtEnd(Song* itemToAdd){
+    LinkedNode* newNode = new LinkedNode(itemToAdd);
+    //if front is nullptr, end should be nullptr too
+    if (isEmpty()||front == nullptr){
+        newNode->setNext(nullptr);
+        front = newNode;
+        end = newNode;
+        currItemCount+=1;
+    }
+    else {
+        end->setNext(newNode);
+        end = newNode;
+        end->setNext(nullptr);
+        currItemCount+=1;
+    }
+}
+
+void SongLinked::addSong(Song* songToAdd){
+    insertAtEnd(songToAdd);
+}
 
 
 
 //Possibly get rid of this function below
 //_______________________REVISIT THIS!!!!!_________________________________________________________
 
-void SongLinked::addSong(Song* songToAdd){
-    addAlphabetical(songToAdd);
-}
+
 
 
 std::string SongLinked::toString(){
@@ -135,30 +154,6 @@ void SongLinked::clearList(){
 
 
 
-
-
-/**
- * appends the new item to the end of the list
- * @post the list has an additional value in it, at the end
- */
-//O(1) always the same thing because the linkedlist has an end value
-void SongLinked::insertAtEnd(Song* itemToAdd){
-    LinkedNode* newNode = new LinkedNode(itemToAdd);
-    //if front is nullptr, end should be nullptr too
-    if (isEmpty()||front == nullptr){
-        newNode->setNext(nullptr);
-        front = newNode;
-        end = newNode;
-        currItemCount+=1;
-    }
-    else {
-        end->setNext(newNode);
-        end = newNode;
-        end->setNext(nullptr);
-        currItemCount+=1;
-    }
-}
-
 //O(n) gets bigger as the size of the list gets bigger
 int SongLinked::getValueAt(int index){
     if(index>=currItemCount||front== nullptr||index<0){
@@ -203,30 +198,6 @@ std::string SongLinked::findArtist(std::string artist){
     }
 }
 
-
-
-
-
-/**
- * appends the new item to the beginning of the list
- * @post the list has an additional value in it, at the beginning
- *    all other items are shifted down by one index
- */
-//O(1) pretty consistent because we know where the front is
-void SongLinked::insertAtFront(Song* itemToAdd){
-    LinkedNode* next = new LinkedNode(itemToAdd);
-    if(front== nullptr){
-        front = next;
-        end = next;
-        front->setNext(nullptr);
-        currItemCount+=1;
-    }
-    else {
-        next->setNext(front);
-        front = next;
-        currItemCount+=1;
-    }
-}
 
 
 /**

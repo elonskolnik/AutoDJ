@@ -27,8 +27,6 @@ public:
     //Destructor
     ~SongLinked();
 
-    void addAlphabetical(Song* songToAdd);
-
     void addSong(Song* songToAdd);
 
     void insertAt(Song* itemToAdd, int index);
