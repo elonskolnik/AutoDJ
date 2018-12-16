@@ -1,3 +1,6 @@
+//Created by Elon Skolnik on 12/1/18.
+//Array implementation of a song list
+
 #include <stdexcept>
 #include <iostream>
 #include <string>
@@ -183,7 +186,7 @@ Song* SongList::findSong(std::string title, std::string artist){
         }
     }
     if(index < 0){
-        throw std::invalid_argument("Could not find the given song");
+        return nullptr;
     }
     return array[index];
 }

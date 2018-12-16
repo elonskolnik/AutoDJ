@@ -256,7 +256,7 @@ Song* SongLinked::removeValueAt(int index){
     }
 }
 
-float SongLinked::CalcDuration(){
+float SongLinked::calcDuration(){
     float duration;
     LinkedNode* count = front;
     for(int i = 0; i < currItemCount; i++){

@@ -51,7 +51,7 @@
         return "something";
 }
     float Playlist::calcDuration(){
-        return songLinked->CalcDuration();
+        return songLinked->calcDuration();
 }
     std::string Playlist::getInfo(){
         return "Total Duration: " + std::to_string(calcDuration()) + " " + songLinked->toString();

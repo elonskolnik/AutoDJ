@@ -1,3 +1,6 @@
+//Created by Elon Skolnik on 11/28/18.
+//Stores a list of all the songs and a list of playlists on which users can perform basic operations.
+
 #include <iostream>
 #include "Library.h"
 #include "Song.h"

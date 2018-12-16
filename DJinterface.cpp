@@ -1,3 +1,5 @@
+//Created by Ryan King on 12/10/
+
 #include <iostream>
 #include "Song.h"
 #include "Playlist.h"
@@ -48,8 +50,7 @@ void hardCodeSongs(Library* lib){
 
 }
 
-int main(){
-    srand(time(NULL));
+void userInterface(){
     Library* DJLibrary = new Library(5);
     hardCodeSongs(DJLibrary);
     bool program = true;
@@ -80,7 +81,12 @@ int main(){
             std::cout<<"Please enter the name of the artist whose songs you want to find:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::cout<<DJLibrary->artistInfo(IndivCommand) <<std::endl;
+            while(DJLibrary->artistInfo(IndivCommand)== "{}" || IndivCommand!= "quit"){
+                std::cout<<"Please enter a valid artist or 'quit' to quit: "<<std::endl;
+                std::getline(std::cin, IndivCommand);
+            }
+            if(IndivCommand!= "quit")
+                std::cout<<DJLibrary->artistInfo(IndivCommand) <<std::endl;
 
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
@@ -91,7 +97,18 @@ int main(){
             std::cout<<"Please enter the name of the artist: " << std::endl;
             std::getline(std::cin, IndivCommand2);
 
-            std::cout<<DJLibrary->findSong(IndivCommand, IndivCommand2)->getInfo() <<std::endl;
+            while(DJLibrary->findSong(IndivCommand, IndivCommand2)==nullptr || IndivCommand!="quit"){
+                std::cout<<"Could not find the given song. Please try again or type 'quit' to quit: \n Song: "<<std::endl;
+                std::getline(std::cin, IndivCommand);
+
+                if(IndivCommand!= "quit"){
+                    std::cout<<"Artist: " <<std::endl;
+                    std::getline(std::cin, IndivCommand2);
+                }
+
+            }
+            if(IndivCommand!= "quit")
+                std::cout<<DJLibrary->findSong(IndivCommand, IndivCommand2)->getInfo() <<std::endl;
 
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
@@ -163,6 +180,17 @@ int main(){
 
         }
     }
+}
+
+void tester(){
+
+}
+
+int main(){
+    srand(time(NULL));
+    userInterface();
+    tester();
+
 
     return 0;
 }
