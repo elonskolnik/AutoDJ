@@ -17,7 +17,7 @@ void hardCodeSongs(Library* lib){
     lib->importSong("Something", "The Beatles", 4.0);
     lib->importSong("Maxwell's Silver Hammer", "The Beatles", 3.5);
     lib->importSong("Oh! Darling", "The Beatles", 4.3);
-    lib->importSong("Octopus' Gsrden", "The Beatles", 2.8);
+    lib->importSong("Octopus' Garden", "The Beatles", 2.8);
     lib->importSong("I Want You", "The Beatles", 3.0);
     lib->importSong("Here Comes the Sun", "The Beatles", 4.5);
     lib->importSong("Because", "The Beatles", 4.0);

@@ -34,7 +34,7 @@ void Library::doubleCapacity(){
 
 void Library::importSong(std::string title, std::string artist, float duration){
     Song* newSong = new Song(title, artist, duration);
-    songList->addAlphabetical(newSong);
+    songList->addSong(newSong);
 }
 
 void Library::newPlaylist(std::string name){
@@ -61,7 +61,7 @@ void Library::genRandomPlaylist(std::string name, float duration){
     Song* songToAdd = songList->getArray()[randNum];
     newPlaylist->addSong(songToAdd);
 
-    std::string added[100] = {};
+    std::string added[50] = {};
     added[0] = songToAdd->getTitle();
     int addedLength = 1;
 
@@ -75,13 +75,11 @@ void Library::genRandomPlaylist(std::string name, float duration){
             int randNum = rand() % songList->itemCount() + 1;
             songToAdd = songList->getArray()[randNum];
             for (int i = 0; i < addedLength; i++) {
-                if (songToAdd->getTitle() == added[i]) {
+                if (songToAdd->getTitle().compare(added[i]) == 0)
                     isThere = true;
-                }
             }
-            if (!isThere) {
+            if (!isThere)
                 check = true;
-            }
         }
         if ((newPlaylist->calcDuration() + songToAdd->getDuration()) < duration) {
             newPlaylist->addSong(songToAdd);
@@ -153,7 +151,9 @@ std::string Library::playlistInfo(std::string title){
 SongList* Library::getSongList() {
     return songList;
 }
-
+Playlist** Library::getPlaylist(){
+    return playlists;
+}
 Playlist* Library::findPlaylist(std::string title){
     int index = -1;
     for(int i = 0; i < playlistCount; i++){

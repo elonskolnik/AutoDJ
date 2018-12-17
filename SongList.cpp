@@ -197,17 +197,14 @@ std::string SongList::findArtist(std::string artist){
         return "{}";
     }
     int strCount = 0;
-    std::string artists = "{";
+    std::string artists = "";
     for(int i = 0; i < currItemCount; i++){
         if(array[i]->getArtist() == artist){
             artists += array[i]->getInfo();
             strCount++;
-            if(strCount < count){
-                artists += ", ";
-            }
-            else{
-                artists += "}";
-            }
+            if(strCount < count)
+                artists += "\n";
+
         }
     }
     return artists;
