@@ -125,6 +125,7 @@ std::string Library::playlistsInfo(){
     std::string info = "{";
     for(int i = 0; i < playlistCount; i++){
         info += playlists[i]->getTitle() + " " + std::to_string(playlists[i]->calcDuration());
+        info += ", " + playlists[i]->getInfo() + "\n";
         if(i < playlistCount -1){
             info += ", ";
         }

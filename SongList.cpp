@@ -20,15 +20,12 @@ SongList::SongList(int initialCapacity){
     currItemCount = 0;
 }
 
-<<<<<<< Updated upstream
-=======
 //destructor
 SongList::~SongList(){
     delete[] array;
     array = nullptr;
 }
 
->>>>>>> Stashed changes
 /**
  * replaces the old array with an array twice the size
  * private method only called within ArrayList when necessary
@@ -47,7 +44,7 @@ void SongList::doubleCapacity(){
 
 void SongList::insertAt(Song* itemToAdd, int index) {
     if(index < 0 || index > currItemCount){
-        throw std::out_of_range("Bad index given to insertAt:"+index);
+        throw std::out_of_range("Bad index given to insertAt:");
     }
     Song* temp = this->array[index];
     this->array[index] = itemToAdd;
@@ -72,7 +69,7 @@ void SongList::addAlphabetical(Song* songToAdd) {
         array[currItemCount]=songToAdd;
         currItemCount+=1;
         placed=true;
-        std::cout <<"regular"<<std::endl;
+        //std::cout <<"regular"<<std::endl;
     }
 
     while(!placed){
@@ -82,10 +79,10 @@ void SongList::addAlphabetical(Song* songToAdd) {
                 std::string artist = songToAdd->getArtist();
 
                 while(array[x]->getArtist()==artist){
-                    std::cout <<"real alpha"<<std::endl;
+                    //std::cout <<"real alpha"<<std::endl;
 
                     if(songToAdd->getTitle() < (array[x]->getTitle())){
-                        insertAt(songToAdd,x+1);
+                        insertAt(songToAdd,x);
                         placed=true;
                         x=currItemCount;
 
@@ -96,7 +93,7 @@ void SongList::addAlphabetical(Song* songToAdd) {
                     insertAt(songToAdd, x);
                     placed = true;
                     x = currItemCount;
-                    std::cout <<"alphanorm"<<std::endl;
+                    //std::cout <<"alphanorm"<<std::endl;
 
                 }
 
@@ -105,7 +102,7 @@ void SongList::addAlphabetical(Song* songToAdd) {
         if(!placed){
             array[currItemCount]=songToAdd;
             currItemCount+=1;
-            std::cout <<"regular"<<std::endl;
+            //std::cout <<"regular"<<std::endl;
             placed=true;
         }
     }

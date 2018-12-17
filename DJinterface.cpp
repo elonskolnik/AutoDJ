@@ -211,7 +211,7 @@ void userInterface(){
             std::cout<<"New playlist " <<IndivCommand <<" created." <<std::endl;
 
         } else if (command == "quit"){
-            program = false;
+
 
             std::cout<<"Please enter the name of the file create:" <<std::endl;
             std::getline(std::cin, IndivCommand);
@@ -219,7 +219,13 @@ void userInterface(){
             std::ofstream file(IndivCommand);
 
             file << DJLibrary->songsInfo();
+
+            file << "\n";
+
+
+            file << DJLibrary->playlistsInfo();
             file.close();
+            program = false;
 
 
 
