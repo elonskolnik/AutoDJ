@@ -71,6 +71,13 @@ void SongList::addAlphabetical(Song* songToAdd) {
     //Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
     //add Pink Floyd- pie
     bool placed=false;
+
+    if (currItemCount==0){
+        array[currItemCount]=songToAdd;
+        currItemCount+=1;
+        std::cout <<"regular"<<std::endl;
+    }
+
     while(!placed){
         for (int x = 0; x < currItemCount - 1; x++) {
             if (songToAdd->getArtist() < (array[x]->getArtist())) {
