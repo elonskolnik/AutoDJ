@@ -59,20 +59,31 @@ void SongList::insertAt(Song* itemToAdd, int index) {
 
 
 void SongList::addAlphabetical(Song* songToAdd){
-    if(currCapacity <= currItemCount-1) {
+    /*if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
-    if(currItemCount == 0) {
-        array[currItemCount] = songToAdd;
+    if(currItemCount == 0){
+        array[0] = songToAdd;
+        currItemCount++;
     }
-    else{
-        for(int x=0; x<currItemCount; x++){
-            if (songToAdd->getTitle().compare(array[x]->getTitle())<0){
-                insertAt(songToAdd,x);
-            }
+    //currItemCount = 4
+    //0                 1               2                   3
+    //Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
+    //add Pink Floyd- pie
+    for(int x=0; x<currItemCount-1; x++){
+        if (songToAdd->getArtist().compare(array[x]->getArtist())<0){
+                if (x == currItemCount-1){
+                    array[x+1] = songToAdd;
+                }
+                else{
+                    if (songToAdd->getArtist().compare(array[x]->getArtist())>0){
+
+                    }
+                }
         }
-    }
+    }*/
 }
+
 //Possibly get rid of this function below
 //_______________________REVISIT THIS!!!!!_________________________________________________________
 /**
@@ -95,15 +106,9 @@ std::string SongList::toString(){
     if(currItemCount == 0){
         return "{}";
     }
-    std::string str = "(";
+    std::string str = "";
     for(int i = 0; i < currItemCount; i++){
-        str += array[i]->getInfo();
-        if(i < currItemCount -1){
-            str += ", ";
-        }
-        else{
-            str += "}";
-        }
+        str += array[i]->getInfo() +"\n";
     }
     return str;
 }

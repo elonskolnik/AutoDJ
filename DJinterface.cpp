@@ -51,7 +51,6 @@ void hardCodeSongs(Library* lib){
 void userInterface(){
     Library* DJLibrary = new Library(5);
     hardCodeSongs(DJLibrary);
-    std::cout<<"here" <<std::endl;
     bool program = true;
     std::string command;
     std::string IndivCommand;
