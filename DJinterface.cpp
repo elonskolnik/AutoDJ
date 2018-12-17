@@ -80,12 +80,12 @@ void userInterface(){
             std::cout<<"Please enter the name of the artist whose songs you want to find:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            while(DJLibrary->artistInfo(IndivCommand)== "{}" || IndivCommand!= "quit"){
-                std::cout<<"Please enter a valid artist or 'quit' to quit: "<<std::endl;
-                std::getline(std::cin, IndivCommand);
-            }
-            if(IndivCommand!= "quit")
+            if(DJLibrary->artistInfo(IndivCommand) == "{}")
+                std::cout<<"Could not find any songs by the artist of the given name." <<std::endl;
+
+            else
                 std::cout<<DJLibrary->artistInfo(IndivCommand) <<std::endl;
+
 
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
@@ -96,18 +96,12 @@ void userInterface(){
             std::cout<<"Please enter the name of the artist: " << std::endl;
             std::getline(std::cin, IndivCommand2);
 
-            while(DJLibrary->findSong(IndivCommand, IndivCommand2)==nullptr || IndivCommand!="quit"){
-                std::cout<<"Could not find the given song. Please try again or type 'quit' to quit: \n Song: "<<std::endl;
-                std::getline(std::cin, IndivCommand);
+            if(DJLibrary->findSong(IndivCommand, IndivCommand2) == nullptr)
+                std::cout<<"Could not find the given song"<<std::endl;
 
-                if(IndivCommand!= "quit"){
-                    std::cout<<"Artist: " <<std::endl;
-                    std::getline(std::cin, IndivCommand2);
-                }
-
-            }
-            if(IndivCommand!= "quit")
+            else{
                 std::cout<<DJLibrary->findSong(IndivCommand, IndivCommand2)->getInfo() <<std::endl;
+            }
 
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 

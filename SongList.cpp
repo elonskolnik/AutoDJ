@@ -43,14 +43,18 @@ SongList::~SongList(){
 }
 
 void SongList::insertAt(Song* itemToAdd, int index) {
-    if (index < 0 || index > currItemCount) {
-        throw std::out_of_range("no item to remove");
+    if(index < 0 || index > currItemCount){
+        throw std::out_of_range("Bad index given to insertAt:"+index);
     }
-    for (int x = currItemCount; x > index; x--) {
-        array[x] = array[x - 1];
+    Song* temp = this->array[index];
+    this->array[index] = itemToAdd;
+    this->currItemCount++;
+    for(int i = index+1; i < currItemCount; i+=2){
+        Song* temp2 = this->array[i];
+        this->array[i] = temp;
+        temp = this->array[i+1];
+        this->array[i+1] = temp2;
     }
-    array[index] = itemToAdd;
-    currItemCount ++;
 }
 
 
