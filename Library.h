@@ -51,11 +51,15 @@ public:
 
     SongList* getSongList();
 
-    Playlist* findPlaylist(std::string title);
+    int findPlaylist(std::string title);
 
     Song* findSong(std::string title, std::string artist);
 
     void emptyLibrary();
+
+    void removeFromPlaylist(int index, std::string title, std::string artist);
+
+    void addToPlaylist(int index, Song* SongToAdd);
 
     };
 

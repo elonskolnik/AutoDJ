@@ -150,7 +150,7 @@ SongList* Library::getSongList() {
     return songList;
 }
 
-Playlist* Library::findPlaylist(std::string title){
+int Library::findPlaylist(std::string title){
     int index = -1;
     for(int i = 0; i < playlistCount; i++){
         if(title == playlists[i]->getTitle()){
@@ -158,9 +158,9 @@ Playlist* Library::findPlaylist(std::string title){
         }
     }
     if(index < 0){
-        return nullptr;
+        return -1;
     }
-    return playlists[index];
+    return index;
 }
 
 Song* Library::findSong(std::string title, std::string artist){
@@ -174,4 +174,14 @@ void Library::emptyLibrary(){
         delete playlists[x];
     }
     delete playlists;
+}
+
+void Library::removeFromPlaylist(int index, std::string title, std::string artist){
+    playlists[index]->removeSong((title, artist);
+
+}
+
+void Library::addToPlaylist(int index, Song* SongToAdd){
+    playlists[index]->addSong(SongToAdd);
+
 }
