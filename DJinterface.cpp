@@ -110,6 +110,21 @@ void userInterface(){
             std::cout<<"We haven't programmed this command yet. But stay tuned " << IndivCommand << std::endl;
 
 
+            std::cout<<"Please enter the name of the file create:" <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            std::ofstream file(IndivCommand);
+
+            file << DJLibrary->songsInfo();
+
+            file << "\n";
+
+
+            file << DJLibrary->playlistsInfo();
+            file.close();
+            program = false;
+
+
             IndivCommand=fileName;
             //come back and program this command.
 
