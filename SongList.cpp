@@ -46,30 +46,11 @@ void SongList::insertAt(Song* itemToAdd, int index) {
     if (index < 0 || index > currItemCount) {
         throw std::out_of_range("no item to remove");
     }
-    if (currItemCount < currCapacity) {
-        for (int x = currItemCount; x > index; x--) {
-            array[x] = array[x - 1];
-        }
-        array[index] = itemToAdd;
-        currItemCount += 1;
-
-    } else {
-        Song* *newArray = new Song*[currCapacity + 1];
-        newArray[0] = itemToAdd;
-        for (int x = 0; x < index; x++) {
-            newArray[x] = array[x];
-        }
-        newArray[index] = itemToAdd;
-        for (int x = index + 1; x < currCapacity; x++) {
-            newArray[x] = array[x - 1];
-        }
-        Song* *oldArray = array;
-        array = newArray;
-        newArray = nullptr;
-        delete[] oldArray;
-        oldArray = nullptr;
-        currItemCount += 1;
+    for (int x = currItemCount; x > index; x--) {
+        array[x] = array[x - 1];
     }
+    array[index] = itemToAdd;
+    currItemCount ++;
 }
 
 
@@ -87,7 +68,6 @@ void SongList::addAlphabetical(Song* songToAdd){
             }
         }
     }
-    currItemCount++;
 }
 //Possibly get rid of this function below
 //_______________________REVISIT THIS!!!!!_________________________________________________________
@@ -99,9 +79,8 @@ void SongList::addSong(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
     }
-    addAlphabetical(songToAdd);
-    //array[currItemCount] = songToAdd;
-    // currItemCount++;
+    array[currItemCount] = songToAdd;
+    currItemCount++;
 }
 
 /**

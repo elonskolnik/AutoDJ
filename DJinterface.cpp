@@ -46,13 +46,12 @@ void hardCodeSongs(Library* lib){
     lib->importSong("Gold Digger", "Kanye West", 3.4);
     lib->importSong("What Does The Fox Say?", "Ylvis", 3.7);
     lib->importSong("High", "Young Thug", 2.5);
-
-
 }
 
 void userInterface(){
     Library* DJLibrary = new Library(5);
     hardCodeSongs(DJLibrary);
+    std::cout<<"here" <<std::endl;
     bool program = true;
     std::string command;
     std::string IndivCommand;
