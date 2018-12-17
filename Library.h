@@ -64,6 +64,7 @@ public:
 
     void addToPlaylist(int index, Song* SongToAdd);
 
+    void deletePlaylist(std::string title);
     };
 
 #endif //LIBRARY_H

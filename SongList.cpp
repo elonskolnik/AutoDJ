@@ -20,6 +20,15 @@ SongList::SongList(int initialCapacity){
     currItemCount = 0;
 }
 
+<<<<<<< Updated upstream
+=======
+//destructor
+SongList::~SongList(){
+    delete[] array;
+    array = nullptr;
+}
+
+>>>>>>> Stashed changes
 /**
  * replaces the old array with an array twice the size
  * private method only called within ArrayList when necessary
@@ -34,12 +43,6 @@ void SongList::doubleCapacity(){
     delete[] array;
     array = newArray;
     currCapacity *= 2;
-}
-
-//Destructor
-SongList::~SongList(){
-    delete[] array;
-    array = nullptr;
 }
 
 void SongList::insertAt(Song* itemToAdd, int index) {
