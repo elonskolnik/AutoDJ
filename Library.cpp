@@ -66,27 +66,30 @@ void Library::genRandomPlaylist(std::string name, float duration){
     int addedLength = 1;
 
     //keep going until it reaches the given duration
-    while(newPlaylist->calcDuration() < duration){
+    while(newPlaylist->calcDuration() < duration) {
         isThere = false;
         check = false;
 
         //keeps going until it finds a song that wasn't used already
-        while(!check) {
+        while (!check) {
             int randNum = rand() % songList->itemCount() + 1;
             songToAdd = songList->getArray()[randNum];
-            for(int i = 0; i < addedLength; i++){
-                if(songToAdd->getTitle() == added[i]){
+            for (int i = 0; i < addedLength; i++) {
+                if (songToAdd->getTitle() == added[i]) {
                     isThere = true;
                 }
             }
-            if(!isThere){
+            if (!isThere) {
                 check = true;
             }
         }
-        newPlaylist->addSong(songToAdd);
-        added[addedLength] = songToAdd->getTitle();
-        addedLength++;
+        if ((newPlaylist->calcDuration() + songToAdd->getDuration()) < duration) {
+            newPlaylist->addSong(songToAdd);
+            added[addedLength] = songToAdd->getTitle();
+            addedLength++;
+        }
     }
+    playlists[playlistCount] = newPlaylist;
     playlistCount++;
 }
 
@@ -183,5 +186,18 @@ void Library::removeFromPlaylist(int index, std::string title, std::string artis
 
 void Library::addToPlaylist(int index, Song* SongToAdd){
     playlists[index]->addSong(SongToAdd);
+}
 
+void Library::deletePlaylist(std::string title){
+    int index = -1;
+    for(int i = 0; i < playlistCount; i++){
+        if(title == playlists[i]->getTitle()){
+            index = i;
+        }
+    }
+    delete playlists[index];
+    for (int i = index; i < playlistCount; i++){
+        playlists[i] = playlists[i+1];
+    }
+    playlistCount--;
 }

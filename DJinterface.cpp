@@ -57,7 +57,6 @@ void userInterface(){
     hardCodeSongs(DJLibrary);
     bool program = true;
     bool external=false;
-    int currPlaylist;
     std::string fileName;
     std::string command;
     std::string IndivCommand;
@@ -195,7 +194,9 @@ void userInterface(){
             }
             if(DJLibrary->findPlaylist(IndivCommand)->isEmpty()){
                 std::cout<<"Last song on the playlist. Playlist deleted." <<std::endl;
-                delete DJLibrary->findPlaylist(IndivCommand);
+
+                DJLibrary->deletePlaylist(IndivCommand);
+
             }
 
         } else if (command == "newrandom"){
