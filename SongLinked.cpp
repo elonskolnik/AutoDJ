@@ -151,16 +151,12 @@ std::string SongLinked::toString(){
     if (currItemCount < 1) {
         return "{}";
     }
-    std::string text = "{";
+    std::string text = "";
     LinkedNode* nextptr = front;
     for (int x = 0; x <= currItemCount - 1; x++) {
-        text += (nextptr->getItem()->getTitle());
-        if (x < currItemCount - 1) {
-            text += ", ";
-        }
+        text += (nextptr->getItem()->getInfo() + "\n");
         nextptr=nextptr->getNext();
     }
-    text += "}";
     return text;
 }
 

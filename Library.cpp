@@ -18,7 +18,8 @@ Library::Library(int playlistCapacity){
 
 //Destructor
 Library::~Library(){
-    //todo
+    delete songList;
+    delete[] playlists;
 }
 
 void Library::doubleCapacity(){
@@ -33,7 +34,7 @@ void Library::doubleCapacity(){
 
 void Library::importSong(std::string title, std::string artist, float duration){
     Song* newSong = new Song(title, artist, duration);
-    songList->addAlphabetical(newSong);
+    songList->addSong(newSong);
 }
 
 void Library::newPlaylist(std::string name){

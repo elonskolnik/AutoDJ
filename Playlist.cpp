@@ -42,12 +42,13 @@
         std::string song = songLinked->getValueAt(0)->getInfo();
         songLinked->getValueAt(0)->addToPlayCount();
         songLinked->removeValueAtFront();
+        return song;
 }
     float Playlist::calcDuration(){
         return songLinked->calcDuration();
 }
     std::string Playlist::getInfo(){
-        return "Total Duration: " + std::to_string(calcDuration()) + " " + songLinked->toString();
+        return "Total Duration: " + std::to_string(calcDuration()) + "\n" + songLinked->toString();
 }
 
     std::string Playlist::getTitle(){

@@ -190,6 +190,10 @@ void userInterface(){
             else{
                 std::cout<<DJLibrary->findPlaylist(IndivCommand)->playNext()<<std::endl;
             }
+            if(DJLibrary->findPlaylist(IndivCommand)->isEmpty()){
+                std::cout<<"Last song on the playlist. Playlist deleted." <<std::endl;
+                delete DJLibrary->findPlaylist(IndivCommand);
+            }
 
         } else if (command == "newrandom"){
             std::cout<<"Please enter the name of the random playlist you want to create:" <<std::endl;

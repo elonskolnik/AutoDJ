@@ -20,6 +20,11 @@ SongList::SongList(int initialCapacity){
     currItemCount = 0;
 }
 
+//destructor
+SongList::~SongList(){
+    delete[] array;
+}
+
 /**
  * replaces the old array with an array twice the size
  * private method only called within ArrayList when necessary
