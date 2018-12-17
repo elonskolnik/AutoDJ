@@ -106,29 +106,27 @@ void userInterface(){
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
         } else if (command == "import"){
-            external=true;
-            std::cout<<"We haven't programmed this command yet. But stay tuned " << IndivCommand << std::endl;
-
-
-            std::cout<<"Please enter the name of the file create:" <<std::endl;
+            std::cout<<"Please enter the name of the file you want to import:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::ofstream file(IndivCommand);
+            std::ifstream myfile(IndivCommand);
 
-            file << DJLibrary->songsInfo();
+            if (!myfile) {
+                std::cout << "Can't open input file!";
+            }
 
-            file << "\n";
+            else {
+                myfile.open(IndivCommand);
+                std::string line;
+                while (getline(myfile, line)) {
+
+                    DJLibrary->importSong(line, line, 0);
+                }
+                myfile.close();
+            }
 
 
-            file << DJLibrary->playlistsInfo();
-            file.close();
-            program = false;
-
-
-            IndivCommand=fileName;
-            //come back and program this command.
-
-        } else if (command == "discontinue"){
+            } else if (command == "discontinue"){
             DJLibrary->emptyLibrary();
             //We are going to have to revist this one
 
