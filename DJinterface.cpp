@@ -176,7 +176,7 @@ void userInterface(){
                 std::cout<<"Could not find the given song"<<std::endl;
 
             else{
-                DJLibrary->removeFromPlaylist(currPlaylist,IndivCommand, IndivCommand2)
+                DJLibrary->removeFromPlaylist(currPlaylist,IndivCommand, IndivCommand2);
             }
 
 

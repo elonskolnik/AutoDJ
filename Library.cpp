@@ -177,7 +177,7 @@ void Library::emptyLibrary(){
 }
 
 void Library::removeFromPlaylist(int index, std::string title, std::string artist){
-    playlists[index]->removeSong((title, artist);
+    playlists[index]->removeSong(title, artist);
 
 }
 
