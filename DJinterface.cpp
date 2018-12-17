@@ -120,8 +120,7 @@ void userInterface(){
                 std::string line;
                 while (getline(myfile, line)) {
 
-                    // store each line in the vector
-                    text.push_back(line);
+                    DJLibrary->importSong(line, line, 0);
                 }
                 myfile.close();
             }
