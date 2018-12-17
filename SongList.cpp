@@ -20,11 +20,6 @@ SongList::SongList(int initialCapacity){
     currItemCount = 0;
 }
 
-//destructor
-SongList::~SongList(){
-    delete[] array;
-}
-
 /**
  * replaces the old array with an array twice the size
  * private method only called within ArrayList when necessary
@@ -67,19 +62,13 @@ void SongList::addAlphabetical(Song* songToAdd) {
     if (currCapacity <= currItemCount - 1) {
         doubleCapacity();
     }
-    /**  if(currItemCount == 0){
-          array[0] = songToAdd;
-          currItemCount++;
-      }**/
-    //currItemCount = 4
-    //0                 1               2                   3
-    //Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
-    //add Pink Floyd- pie
+
     bool placed=false;
 
     if (currItemCount==0){
         array[currItemCount]=songToAdd;
         currItemCount+=1;
+        placed=true;
         std::cout <<"regular"<<std::endl;
     }
 
@@ -88,7 +77,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
             if (songToAdd->getArtist() < (array[x]->getArtist())) {
                 insertAt(songToAdd,x);
                 placed=true;
-                currItemCount+=1;
                 x=currItemCount;
                 std::cout <<"alpha"<<std::endl;
 
@@ -98,11 +86,21 @@ void SongList::addAlphabetical(Song* songToAdd) {
             array[currItemCount]=songToAdd;
             currItemCount+=1;
             std::cout <<"regular"<<std::endl;
-
+            placed=true;
         }
-        placed=true;
     }
 }
+
+
+
+/**  if(currItemCount == 0){
+        array[0] = songToAdd;
+        currItemCount++;
+    }**/
+//currItemCount = 4
+//0                 1               2                   3
+//Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
+//add Pink Floyd- pie
 
                /** if (x == currItemCount-1){
                     array[x+1] = songToAdd;
