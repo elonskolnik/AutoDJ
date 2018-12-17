@@ -39,7 +39,6 @@ void Library::importSong(std::string title, std::string artist, float duration){
 void Library::newPlaylist(std::string name){
     if(playlistCapacity <= playlistCount-1) {
         doubleCapacity();
-        playlistsize=playlistsize*2;
     }
     Playlist* newPlaylist = new Playlist(name);
     playlists[playlistCount] = newPlaylist;
