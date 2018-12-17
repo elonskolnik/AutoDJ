@@ -31,9 +31,6 @@ public:
     //creates a new playlist of the given length composed of randomly selected songs
     void genRandomPlaylist(std::string name, float duration);
 
-    Playlist* getPlaylist();
-
-
         //removes the given song from the library of songs
     void discontinue(std::string name, std::string artist);
 

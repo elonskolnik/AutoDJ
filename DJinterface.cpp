@@ -5,6 +5,7 @@
 #include "Playlist.h"
 #include "SongList.h"
 #include "Library.h"
+#include <fstream>
 
 
 //so we are probably going to have to change this a lot and basically have it start with the user adding a song and doing a whole list of questions and stuff
@@ -210,6 +211,17 @@ void userInterface(){
 
         } else if (command == "quit"){
             program = false;
+
+            std::cout<<"Please enter the name of the file create:" <<std::endl;
+            std::getline(std::cin, IndivCommand);
+
+            std::ofstream file(IndivCommand);
+
+            file << DJLibrary->songsInfo();
+            file.close();
+
+
+
 
             //we may have to revist this and deal with deconstruction or something, idk
         } else{

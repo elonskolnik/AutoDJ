@@ -132,10 +132,6 @@ std::string Library::playlistsInfo(){
     return info;
 }
 
-Playlist* Library::getPlaylist(){
-    return playlists;
-}
-
 //return the contents of the given playlist
 std::string Library::playlistInfo(std::string title){
     int index = -1;
