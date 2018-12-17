@@ -139,7 +139,7 @@ std::string Library::playlistInfo(std::string title){
         }
     }
     if(index < 0){
-        throw std::invalid_argument("No playlist called " + title + " in the current library");
+        return "{}";
     }
     return playlists[index]->getInfo();
 }
@@ -156,7 +156,7 @@ Playlist* Library::findPlaylist(std::string title){
         }
     }
     if(index < 0){
-        throw std::invalid_argument("Could not find the given playlist");
+        return nullptr;
     }
     return playlists[index];
 }
