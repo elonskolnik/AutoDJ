@@ -126,7 +126,6 @@ void userInterface(){
                 std::cout<<"Could not find the given playlist." <<std::endl;
             else
                 std::cout<<DJLibrary->playlistInfo(IndivCommand) <<std::endl;
-                currPlaylist = DJLibrary->findPlaylist(IndivCommand);
 
         } else if (command == "new"){
             std::cout<<"Please enter the name of the new playlist you want to create:" <<std::endl;
@@ -137,68 +136,59 @@ void userInterface(){
         } else if (command == "add"){
             std::cout<<"Please enter the title of the playlist you want to add to:" << std::endl;
             std::getline(std::cin, IndivCommand);
-            int playlistToAdd = DJLibrary->findPlaylist(IndivCommand);
-            if(playlistToAdd==-1){
+            if(DJLibrary->findPlaylist(IndivCommand) == nullptr){
                 std::cout<<"Could not find the given playlist."<<std::endl;
             }
             else {
-
-                currPlaylist = playlistToAdd;
                 std::cout << "Please enter the name of the song you want to add:" << std::endl;
                 std::getline(std::cin, IndivCommand2);
 
                 std::cout << "Please enter the artist of the song you want to add:" << std::endl;
                 std::getline(std::cin, IndivCommand3);
 
-                if (DJLibrary->findSong(IndivCommand, IndivCommand2) == nullptr) {
+                if (DJLibrary->findSong(IndivCommand2, IndivCommand3) == nullptr) {
                     std::cout << "Could not find the given song" << std::endl;
                 } else {
-                    Song *temp = DJLibrary->findSong(IndivCommand2, IndivCommand3);
 
-                    DJLibrary->addToPlaylist(currPlaylist, temp);
-
-
-                    //DJLibrary->findPlaylist(IndivCommand)->addSong(temp);
+                    DJLibrary->findPlaylist(IndivCommand)->addSong(DJLibrary->findSong(IndivCommand2, IndivCommand3));
 
                     std::cout << "Song " + IndivCommand2 + " added to " + IndivCommand + "." << std::endl;
                 }
             }
 
         } else if (command == "remove"){
-
-            std::cout<<"Please enter the name of the song you want to remove from the playlist: " <<std::endl;
+            std::cout<<"Please enter the name of the playlist you want to remove from: " <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::cout<<"Please enter the name of the artist: " << std::endl;
-            std::getline(std::cin, IndivCommand2);
-
-            if(DJLibrary->findSong(IndivCommand, IndivCommand2) == nullptr)
-                std::cout<<"Could not find the given song"<<std::endl;
+            if(DJLibrary->findPlaylist(IndivCommand) == nullptr)
+                std::cout<<"Could not find the given playlist." <<std::endl;
 
             else{
-                DJLibrary->removeFromPlaylist(currPlaylist,IndivCommand, IndivCommand2);
+                std::cout<<"Please enter the name of the song you want to remove from the playlist: " <<std::endl;
+                std::getline(std::cin, IndivCommand2);
+
+                std::cout<<"Please enter the name of the artist: " << std::endl;
+                std::getline(std::cin, IndivCommand3);
+
+                if(DJLibrary->findSong(IndivCommand2, IndivCommand3) == nullptr)
+                    std::cout<<"Could not find the given song"<<std::endl;
+
+                else{
+                    DJLibrary->findPlaylist(IndivCommand)->removeSong(IndivCommand2, IndivCommand3);
+                }
             }
 
 
         } else if (command == "playnext"){
-            std::cout<<"Please enter the name of the song you want to remove from the playlist: " <<std::endl;
+            std::cout<<"Please enter the name of the playlist you want to play from: " <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::cout<<"Please enter the name of the artist: " << std::endl;
-            std::getline(std::cin, IndivCommand2);
-
-            if(DJLibrary->findSong(IndivCommand, IndivCommand2) == nullptr)
-                std::cout<<"Could not find the given song"<<std::endl;
+            if(DJLibrary->playlistInfo(IndivCommand) == "{}")
+                std::cout<<"Could not find the given playlist"<<std::endl;
 
             else{
-                Song* songToPlay = DJLibrary->findSong(IndivCommand, IndivCommand2);
-                std::cout<<songToPlay->getInfo()<<std::endl;
-                songToPlay->addToPlayCount();
-
-                DJLibrary->removeFromPlaylist(currPlaylist,IndivCommand, IndivCommand2);
+                std::cout<<DJLibrary->findPlaylist(IndivCommand)->playNext()<<std::endl;
             }
-
-            //we are going to have to revisit this
 
         } else if (command == "newrandom"){
             std::cout<<"Please enter the name of the random playlist you want to create:" <<std::endl;

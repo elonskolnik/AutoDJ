@@ -51,7 +51,7 @@ public:
 
     SongList* getSongList();
 
-    int findPlaylist(std::string title);
+    Playlist* findPlaylist(std::string title);
 
     Song* findSong(std::string title, std::string artist);
 

@@ -150,7 +150,7 @@ SongList* Library::getSongList() {
     return songList;
 }
 
-int Library::findPlaylist(std::string title){
+Playlist* Library::findPlaylist(std::string title){
     int index = -1;
     for(int i = 0; i < playlistCount; i++){
         if(title == playlists[i]->getTitle()){
@@ -158,9 +158,9 @@ int Library::findPlaylist(std::string title){
         }
     }
     if(index < 0){
-        return -1;
+        return nullptr;
     }
-    return index;
+    return playlists[index];
 }
 
 Song* Library::findSong(std::string title, std::string artist){

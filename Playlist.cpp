@@ -33,22 +33,15 @@
 }
     void Playlist::addSong(Song* songToAdd){
         this->songLinked->addSong(songToAdd);
+        this->songCount++;
 }
     bool Playlist::isEmpty(){
-        if(this->songLinked->isEmpty()){
-            return true;
-        }
-        return false;
-
+        return this->songLinked->isEmpty();
 }
     std::string Playlist::playNext(){
-        if(this->songLinked->itemCount() <=this->songCount){
-            this->songCount=0;
-        }
-        else{
-            songCount+=1;
-        }
-        return "something";
+        std::string song = songLinked->getValueAt(0)->getInfo();
+        songLinked->getValueAt(0)->addToPlayCount();
+        songLinked->removeValueAtFront();
 }
     float Playlist::calcDuration(){
         return songLinked->calcDuration();
