@@ -58,21 +58,41 @@ void SongList::insertAt(Song* itemToAdd, int index) {
 }
 
 
-void SongList::addAlphabetical(Song* songToAdd){
-    /*if(currCapacity <= currItemCount-1) {
+void SongList::addAlphabetical(Song* songToAdd) {
+    if (currCapacity <= currItemCount - 1) {
         doubleCapacity();
     }
-    if(currItemCount == 0){
-        array[0] = songToAdd;
-        currItemCount++;
-    }
+    /**  if(currItemCount == 0){
+          array[0] = songToAdd;
+          currItemCount++;
+      }**/
     //currItemCount = 4
     //0                 1               2                   3
     //Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
     //add Pink Floyd- pie
-    for(int x=0; x<currItemCount-1; x++){
-        if (songToAdd->getArtist().compare(array[x]->getArtist())<0){
-                if (x == currItemCount-1){
+    bool placed=false;
+    while(!placed){
+        for (int x = 0; x < currItemCount - 1; x++) {
+            if (songToAdd->getArtist() < (array[x]->getArtist())) {
+                insertAt(songToAdd,x);
+                placed=true;
+                currItemCount+=1;
+                x=currItemCount;
+                std::cout <<"alpha"<<std::endl;
+
+            }
+        }
+        if(!placed){
+            array[currItemCount]=songToAdd;
+            currItemCount+=1;
+            std::cout <<"regular"<<std::endl;
+
+        }
+        placed=true;
+    }
+}
+
+               /** if (x == currItemCount-1){
                     array[x+1] = songToAdd;
                 }
                 else{
@@ -81,8 +101,8 @@ void SongList::addAlphabetical(Song* songToAdd){
                     }
                 }
         }
-    }*/
-}
+    }
+}**/
 
 //Possibly get rid of this function below
 //_______________________REVISIT THIS!!!!!_________________________________________________________

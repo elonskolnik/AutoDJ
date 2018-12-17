@@ -49,9 +49,11 @@ void hardCodeSongs(Library* lib){
 }
 
 void userInterface(){
-    Library* DJLibrary = new Library(5);
+    Library* DJLibrary = new Library(100);
     hardCodeSongs(DJLibrary);
     bool program = true;
+    bool external=false;
+    std::string fileName;
     std::string command;
     std::string IndivCommand;
     std::string IndivCommand2;
@@ -100,12 +102,15 @@ void userInterface(){
             //Again, we are going to have to ensure this handles situations where the name is entered incorrectly or there's nothing in the library
 
         } else if (command == "import"){
+            external=true;
             std::cout<<"We haven't programmed this command yet. But stay tuned " << IndivCommand << std::endl;
 
+
+            IndivCommand=fileName;
             //come back and program this command.
 
         } else if (command == "discontinue"){
-
+            DJLibrary->emptyLibrary();
             //We are going to have to revist this one
 
         } else if (command == "playlists"){

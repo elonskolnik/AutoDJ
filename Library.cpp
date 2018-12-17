@@ -11,6 +11,7 @@
 Library::Library(int playlistCapacity){
     songList = new SongList(10);
     playlists = new Playlist*[10];
+    playlistsize=10;
     playlistCount = 0;
     this->playlistCapacity = playlistCapacity;
 }
@@ -32,12 +33,13 @@ void Library::doubleCapacity(){
 
 void Library::importSong(std::string title, std::string artist, float duration){
     Song* newSong = new Song(title, artist, duration);
-    songList->addSong(newSong);
+    songList->addAlphabetical(newSong);
 }
 
 void Library::newPlaylist(std::string name){
     if(playlistCapacity <= playlistCount-1) {
         doubleCapacity();
+        playlistsize=playlistsize*2;
     }
     Playlist* newPlaylist = new Playlist(name);
     playlists[playlistCount] = newPlaylist;
@@ -163,4 +165,13 @@ Playlist* Library::findPlaylist(std::string title){
 
 Song* Library::findSong(std::string title, std::string artist){
    return songList->findSong(title, artist);
+}
+
+void Library::emptyLibrary(){
+    songList->clearList();
+
+    for (int x=0; x<playlistCount;x++){
+        delete playlists[x];
+    }
+    delete playlists;
 }

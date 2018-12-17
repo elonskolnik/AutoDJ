@@ -14,6 +14,7 @@ private:
     Playlist** playlists;
     int playlistCount;
     int playlistCapacity;
+    int playlistsize;
     void doubleCapacity();
 
 public:
@@ -53,6 +54,9 @@ public:
     Playlist* findPlaylist(std::string title);
 
     Song* findSong(std::string title, std::string artist);
-};
+
+    void emptyLibrary();
+
+    };
 
 #endif //LIBRARY_H

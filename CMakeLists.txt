@@ -3,4 +3,20 @@ project(AutoDJ)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(AutoDJ Library.cpp SongList.cpp Song.cpp Playlist.cpp DJinterface.cpp LinkedNode.cpp SongLinked.cpp)
+include_directories(.)
+
+add_executable(AutoDJ
+        DJinterface.cpp
+        Library.cpp
+        Library.h
+        LinkedNode.cpp
+        LinkedNode.h
+        List.h
+        Playlist.cpp
+        Playlist.h
+        Song.cpp
+        Song.h
+        SongLinked.cpp
+        SongLinked.h
+        SongList.cpp
+        SongList.h)
