@@ -61,7 +61,7 @@ void Library::genRandomPlaylist(std::string name, float duration){
     Song* songToAdd = songList->getArray()[randNum];
     newPlaylist->addSong(songToAdd);
 
-    std::string added[50] = {};
+    std::string added[100] = {};
     added[0] = songToAdd->getTitle();
     int addedLength = 1;
 
@@ -83,6 +83,7 @@ void Library::genRandomPlaylist(std::string name, float duration){
         }
         if ((newPlaylist->calcDuration() + songToAdd->getDuration()) < duration) {
             newPlaylist->addSong(songToAdd);
+            std::cout<<"song added" <<std::endl;
             added[addedLength] = songToAdd->getTitle();
             addedLength++;
         }
