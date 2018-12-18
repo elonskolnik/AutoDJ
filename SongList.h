@@ -80,6 +80,8 @@ public:
     void removeSong(std::string title, std::string artist);
 
     Song** getArray();
+
+    Song* getSongbyIndex(int index);
 };
 
 

@@ -79,7 +79,9 @@ void Library::genRandomPlaylist(std::string name, float duration){
             int randNum = rand() % songList->itemCount() + 1;
 
 
-            songToAdd = songList->getArray()[randNum];
+          //  songToAdd = songList->getArray()[randNum];
+
+            songToAdd = songList->getSongbyIndex(randNum);
 
 
             for (int i = 0; i < addedLength; i++) {
