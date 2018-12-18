@@ -72,22 +72,29 @@ void SongList::addAlphabetical(Song* songToAdd) {
         //std::cout <<"regular"<<std::endl;
     }
 
+    int placehold;
     while(!placed){
         for (int x = 0; x < currItemCount - 1; x++) {
             if (songToAdd->getArtist() < (array[x]->getArtist())) {
 
                 std::string artist = songToAdd->getArtist();
+                placehold=x;
+                if(placehold>0){
+                    placehold-=1;
+                }
+                while(array[placehold]->getArtist()==artist && placehold>0){
 
-                while(array[x]->getArtist()==artist){
-                    //std::cout <<"real alpha"<<std::endl;
-
-                    if(songToAdd->getTitle() < (array[x]->getTitle())){
-                        insertAt(songToAdd,x);
+                    if(songToAdd->getTitle() < (array[placehold]->getTitle())){
+                        insertAt(songToAdd, placehold);
                         placed=true;
                         x=currItemCount;
 
+                        //std::cout<<"Got here"<<std::endl;
+
                     }
-                    x++;
+                    if(placehold>0) {
+                        placehold-=1;
+                    }
                 }
                 if(!placed) {
                     insertAt(songToAdd, x);
@@ -96,7 +103,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
                     //std::cout <<"alphanorm"<<std::endl;
 
                 }
-
             }
         }
         if(!placed){
