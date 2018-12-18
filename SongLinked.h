@@ -59,6 +59,8 @@ public:
 
     float calcDuration();
 
+    void addAlphabetical(Song* songToAdd);
+
     };
 
 #endif //AUTODJ_SONGLINKED_H

@@ -26,6 +26,8 @@ public:
      */
     virtual void addSong(Song* songToAdd) =0;
 
+    virtual void addAlphabetical(Song* songToAdd) =0;
+
     virtual void insertAt(Song* songToAdd, int index) =0;
 
 

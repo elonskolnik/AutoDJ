@@ -10,13 +10,12 @@
 
 void fileToLibrary(Library* currentLib, std::string fileName) {
     std::string line;
-    std::stringstream splitter(line);
     std::string artist, title, duration;
-
     std::ifstream infile(fileName);
     if (infile) {
         while (infile) {
             getline(infile, line);
+            std::stringstream splitter(line);
             if (std::to_string(line.at(0)) != "*") {
                 getline(splitter, artist, '-');
                 getline(splitter, title, '-');
@@ -30,8 +29,9 @@ void fileToLibrary(Library* currentLib, std::string fileName) {
 
         }
         infile.close();
+        std::cout<<"Songs imported" <<std::endl;
     } else {
-        throw std::runtime_error("Could not find the requested file");
+        std::cout<<"Could not find the requested file" <<std::endl;
     }
 }
 
@@ -72,20 +72,17 @@ void hardCodeSongs(Library* lib){
     lib->importSong("Gold Digger", "Kanye West", 3.4);
     lib->importSong("What Does The Fox Say?", "Ylvis", 3.7);
     lib->importSong("High", "Young Thug", 2.5);
-    std::cout <<"Finished importing"<<std::endl;
 }
 
 void userInterface(){
     Library* DJLibrary = new Library(100);
     hardCodeSongs(DJLibrary);
     bool program = true;
-    bool external=false;
     std::string fileName;
     std::string command;
     std::string IndivCommand;
     std::string IndivCommand2;
     std::string IndivCommand3;
-
 
     std::cout<<"Welcome to the revolutionary Auto DJ." <<std::endl;
     std::cout<<"Your whole universe is about to change." <<std::endl;
@@ -132,7 +129,6 @@ void userInterface(){
             std::cout<<"Please enter the name of the file you want to import:" <<std::endl;
             std::getline(std::cin, IndivCommand);
             fileToLibrary(DJLibrary, IndivCommand);
-            std::cout<<"Songs imported" <<std::endl;
 
             } else if (command == "discontinue"){
             DJLibrary->emptyLibrary();
