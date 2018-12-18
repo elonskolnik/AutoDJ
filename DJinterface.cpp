@@ -38,7 +38,7 @@ void hardCodeSongs(Library* lib){
     lib->importSong("Time", "Pink Floyd", 2.5);
 
     //ask why this one song messes things up
-//    lib->importSong("The Great Gig in the Sky", "Pink Floyd", 3.2);
+    //lib->importSong("The Great Gig in the Sky", "Pink Floyd", 3.2);
     lib->importSong("Money", "Pink Floyd", 2.8);
     lib->importSong("Us and Them", "Pink Floyd", 4.5);
     lib->importSong("Any Colour You Like", "Pink Floyd", 4.0);

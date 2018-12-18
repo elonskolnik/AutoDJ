@@ -74,22 +74,24 @@ void SongList::addAlphabetical(Song* songToAdd) {
 
     int placehold;
     while(!placed){
-        for (int x = 0; x < currItemCount - 1; x++) {
+        for (int x = 0; x < currItemCount; x++) {
             if (songToAdd->getArtist() < (array[x]->getArtist())) {
 
                 std::string artist = songToAdd->getArtist();
                 placehold=x;
+
                 if(placehold>0){
                     placehold-=1;
                 }
-                while(array[placehold]->getArtist()==artist && placehold>0){
+
+                    while(array[placehold]->getArtist()==artist && placehold>0){
 
                     if(songToAdd->getTitle() < (array[placehold]->getTitle())){
                         insertAt(songToAdd, placehold);
                         placed=true;
                         x=currItemCount;
 
-                        //std::cout<<"Got here"<<std::endl;
+                        std::cout<<"Got here"<<std::endl;
 
                     }
                     if(placehold>0) {
@@ -100,10 +102,32 @@ void SongList::addAlphabetical(Song* songToAdd) {
                     insertAt(songToAdd, x);
                     placed = true;
                     x = currItemCount;
-                    //std::cout <<"alphanorm"<<std::endl;
-
                 }
             }
+
+
+            else if (songToAdd->getArtist() == (array[x]->getArtist())) {
+                std::string artist = songToAdd->getArtist();
+                placehold=x;
+                bool upnext =true;
+
+                while(songToAdd->getTitle() > (array[placehold]->getTitle()) && songToAdd->getArtist() == (array[placehold]->getArtist()) && upnext){
+
+                    if(placehold<currItemCount-1){
+                        placehold += 1;
+                    }
+                    else{
+                        upnext=false;
+                    }
+                }
+                if(!placed){
+                    insertAt(songToAdd, placehold);
+                    placed = true;
+                    x = currItemCount;
+                }
+            }
+
+
         }
         if(!placed){
             array[currItemCount]=songToAdd;
