@@ -43,6 +43,10 @@ public:
 
     virtual void removeSong(std::string title, std::string artist) =0;
 
+    virtual Song* getValueAt(int index) =0;
+
+    virtual float calcDuration() =0;
+
 };
 
 
