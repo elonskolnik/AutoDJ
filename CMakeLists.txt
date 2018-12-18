@@ -13,4 +13,4 @@ add_executable(AutoDJ
         Song.cpp
         SongLinked.cpp
         SongList.cpp
-        TesterBasics.cpp)
+        )

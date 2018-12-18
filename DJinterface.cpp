@@ -255,6 +255,21 @@ void userInterface(){
 }
 
 void tester(){
+    std::cout <<"Song Class Tester" << std::endl;
+
+    std::cout <<"Playlist Class Tester" << std::endl;
+
+
+
+    std::cout <<"SongList Class Tester" << std::endl;
+
+    std::cout <<"SongLinked Tester" << std::endl;
+
+
+    std::cout <<"Song Class Tester" << std::endl;
+
+
+    std::cout <<"FileOut Tester" << std::endl;
 
 }
 

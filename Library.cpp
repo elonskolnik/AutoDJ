@@ -34,7 +34,7 @@ void Library::doubleCapacity(){
 
 void Library::importSong(std::string title, std::string artist, float duration){
     Song* newSong = new Song(title, artist, duration);
-    songList->addSong(newSong);
+    songList->addAlphabetical(newSong);
 }
 
 void Library::newPlaylist(std::string name){

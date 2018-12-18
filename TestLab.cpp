@@ -2,7 +2,7 @@
 // Created by Toby Dragon on 8/26/17.
 //
 #include <iostream>
-#include "TestLib.h"
+#include "TestLab.h"
 
 void printAssertEquals(int expected, int actual){
     if (expected == actual){
