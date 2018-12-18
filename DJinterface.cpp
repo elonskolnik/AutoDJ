@@ -1,18 +1,40 @@
 //Created by Ryan King on 12/10/
 
 #include <iostream>
+#include <sstream>
 #include "Song.h"
 #include "Playlist.h"
 #include "SongList.h"
 #include "Library.h"
-#include "FileOut.h"
 #include <fstream>
 
+void fileToLibrary(Library* currentLib, std::string fileName) {
+    std::string line;
+    std::stringstream splitter(line);
+    std::string artist, title, duration;
 
-//so we are probably going to have to change this a lot and basically have it start with the user adding a song and doing a whole list of questions and stuff
-//but hopefully this will serve as a sufficient prototype and we'll tell him that we have to revamp the interface a bit
+    std::ifstream infile(fileName);
+    if (infile) {
+        while (infile) {
+            getline(infile, line);
+            if (std::to_string(line.at(0)) != "*") {
+                getline(splitter, artist, '-');
+                getline(splitter, title, '-');
+                getline(splitter, duration, '-');
+            }
+            if (currentLib->findSong(title, artist) == nullptr) {
+                currentLib->importSong(title, artist, stof(duration));
+            } else {
+                std::cout << "Song: " << title << " by " << artist << " already exists" <<std::endl;
+            }
 
-//temporary solution, deal with file I/0 stuff later
+        }
+        infile.close();
+    } else {
+        throw std::runtime_error("Could not find the requested file");
+    }
+}
+
 void hardCodeSongs(Library* lib){
     lib->importSong("Come Together", "The Beatles", 4.5);
     lib->importSong("Something", "The Beatles", 4.0);
@@ -109,9 +131,8 @@ void userInterface(){
         } else if (command == "import"){
             std::cout<<"Please enter the name of the file you want to import:" <<std::endl;
             std::getline(std::cin, IndivCommand);
-
-
-
+            fileToLibrary(DJLibrary, IndivCommand);
+            std::cout<<"Songs imported" <<std::endl;
 
             } else if (command == "discontinue"){
             DJLibrary->emptyLibrary();
@@ -211,8 +232,6 @@ void userInterface(){
             std::cout<<"New playlist " <<IndivCommand <<" created." <<std::endl;
 
         } else if (command == "quit"){
-
-
             std::cout<<"Please enter the name of the file you want to create:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
@@ -221,13 +240,11 @@ void userInterface(){
             file << DJLibrary->songsInfo();
 
             file << "\n";
-
+            file << "*";
 
             file << DJLibrary->playlistsInfo();
             file.close();
             program = false;
-
-
 
 
             //we may have to revist this and deal with deconstruction or something, idk
