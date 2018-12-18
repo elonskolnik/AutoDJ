@@ -58,6 +58,10 @@ void Library::genRandomPlaylist(std::string name, float duration){
 
     //generate a random index and pick the song of that index in the list
     int randNum = rand() % songList->itemCount() + 1;
+    while (randNum > songList->itemCount()){
+        randNum = rand() % songList->itemCount() + 1;
+    }
+
     Song* songToAdd = songList->getArray()[randNum];
     newPlaylist->addSong(songToAdd);
 
@@ -73,8 +77,14 @@ void Library::genRandomPlaylist(std::string name, float duration){
         //keeps going until it finds a song that wasn't used already
         while (!check) {
             int randNum = rand() % songList->itemCount() + 1;
+
+
             songToAdd = songList->getArray()[randNum];
+
+
             for (int i = 0; i < addedLength; i++) {
+
+
                 if (songToAdd->getTitle().compare(added[i]) == 0)
                     isThere = true;
             }

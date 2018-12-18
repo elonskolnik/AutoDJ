@@ -219,6 +219,8 @@ void userInterface(){
             std::cout<<"Please enter the duration of the playlist you want to create:" <<std::endl;
             std::getline(std::cin, IndivCommand2);
 
+
+
             DJLibrary->genRandomPlaylist(IndivCommand, stof(IndivCommand2));
 
             std::cout<<"New playlist " <<IndivCommand <<" created." <<std::endl;
