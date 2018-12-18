@@ -105,6 +105,7 @@ void SongList::addAlphabetical(Song* songToAdd) {
                 }
             }
 
+
             else if (songToAdd->getArtist() == (array[x]->getArtist())) {
                 std::string artist = songToAdd->getArtist();
                 placehold=x;
