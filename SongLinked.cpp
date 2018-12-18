@@ -259,4 +259,5 @@ float SongLinked::calcDuration(){
         duration += count->getItem()->getDuration();
         count=count->getNext();
     }
+    return duration;
 }
