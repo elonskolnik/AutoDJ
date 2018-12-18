@@ -63,3 +63,4 @@ bool checkSorted(int* a, int size);
 bool checkForSameElements(const int* a1, const int* a2, int size);
 
 #endif //COMP220LAB_TESTLIB_H
+

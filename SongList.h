@@ -79,11 +79,9 @@ public:
 
     void removeSong(std::string title, std::string artist);
 
-    Song *getValueAt(int index);
+    Song* getValueAt(int index);
 
     float calcDuration();
-
-    Song **getArray();
 };
 
 #endif //COMP220_SONGLIST_H
