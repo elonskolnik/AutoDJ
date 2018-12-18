@@ -11,7 +11,7 @@
 class SongList : public List {
 private:
     //pointer to the start of the array
-    Song** array;
+    Song **array;
     //count of the number of valid items currently stored in the array
     int currItemCount;
     //size of the current array
@@ -39,17 +39,17 @@ public:
      * appends the new item to the end of the list
      * @post the list has an additional value in it, at the end
      */
-    void addSong(Song* songToAdd);
+    void addSong(Song *songToAdd);
 
-    void insertAt(Song* itemToAdd, int index);
+    void insertAt(Song *itemToAdd, int index);
 
-    void addAlphabetical(Song* songToAdd);
+    void addAlphabetical(Song *songToAdd);
 
-     /**
-     * gives a string representation of the current list
-     * @returns a string representing the given list in the exact format shown below
-     * {1, 2, 3, 4, 5}
-     */
+    /**
+    * gives a string representation of the current list
+    * @returns a string representing the given list in the exact format shown below
+    * {1, 2, 3, 4, 5}
+    */
     std::string toString();
 
     /**
@@ -75,14 +75,15 @@ public:
      */
     std::string findArtist(std::string artist);
 
-    Song* findSong(std::string title, std::string artist);
+    Song *findSong(std::string title, std::string artist);
 
     void removeSong(std::string title, std::string artist);
 
-    Song* getValueAt(int index);
+    Song *getValueAt(int index);
 
     float calcDuration();
-};
 
+    Song **getArray();
+};
 
 #endif //COMP220_SONGLIST_H

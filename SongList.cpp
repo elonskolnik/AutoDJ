@@ -69,7 +69,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
         array[currItemCount]=songToAdd;
         currItemCount+=1;
         placed=true;
-        //std::cout <<"regular"<<std::endl;
     }
 
     int placehold;
@@ -105,7 +104,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
                 }
             }
 
-
             else if (songToAdd->getArtist() == (array[x]->getArtist())) {
                 std::string artist = songToAdd->getArtist();
                 placehold=x;
@@ -138,35 +136,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
     }
 }
 
-
-
-/**  if(currItemCount == 0){
-        array[0] = songToAdd;
-        currItemCount++;
-    }**/
-//currItemCount = 4
-//0                 1               2                   3
-//Beatles- boop, Pink Floyd- lime Pink FLoyd- time, Stink- doot
-//add Pink Floyd- pie
-
-               /** if (x == currItemCount-1){
-                    array[x+1] = songToAdd;
-                }
-                else{
-                    if (songToAdd->getArtist().compare(array[x]->getArtist())>0){
-
-                    }
-                }
-        }
-    }
-}**/
-
-//Possibly get rid of this function below
-//_______________________REVISIT THIS!!!!!_________________________________________________________
-/**
- * appends the new item to the end of the list
- * @post the list has an additional value in it, at the end
- */
 void SongList::addSong(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
@@ -269,16 +238,8 @@ void SongList::removeSong(std::string title, std::string artist){
     currItemCount--;
 }
 
-Song* SongList::getValueAt(int index){
-    return array[index];
-}
-
-float SongList::calcDuration(){
-    float duration = 0;
-    for(int i = 0; i < currItemCount; i++){
-        duration += array[i]->getDuration();
-    }
-    return duration;
+Song** SongList::getArray(){
+    return this->array;
 }
 
 
