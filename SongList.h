@@ -79,7 +79,9 @@ public:
 
     void removeSong(std::string title, std::string artist);
 
-    Song** getArray();
+    Song* getValueAt(int index);
+
+    float calcDuration();
 };
 
 

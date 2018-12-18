@@ -34,7 +34,7 @@ void Library::doubleCapacity(){
 
 void Library::importSong(std::string title, std::string artist, float duration){
     Song* newSong = new Song(title, artist, duration);
-    songList->addAlphabetical(newSong);
+    songList->addSong(newSong);
 }
 
 void Library::newPlaylist(std::string name){
@@ -53,12 +53,13 @@ void Library::genRandomPlaylist(std::string name, float duration){
     }
 
     bool isThere, check;
+    bool full = false;
 
     Playlist* newPlaylist = new Playlist(name);
 
     //generate a random index and pick the song of that index in the list
     int randNum = rand() % songList->itemCount() + 1;
-    Song* songToAdd = songList->getArray()[randNum];
+    Song* songToAdd = songList->getValueAt(randNum);
     newPlaylist->addSong(songToAdd);
 
     std::string added[100] = {};
@@ -66,26 +67,33 @@ void Library::genRandomPlaylist(std::string name, float duration){
     int addedLength = 1;
 
     //keep going until it reaches the given duration
-    while(newPlaylist->calcDuration() < duration) {
+    while(newPlaylist->calcDuration() < duration && !full) {
         isThere = false;
         check = false;
 
         //keeps going until it finds a song that wasn't used already
         while (!check) {
             int randNum = rand() % songList->itemCount() + 1;
-            songToAdd = songList->getArray()[randNum];
+            songToAdd = songList->getValueAt(randNum);
             for (int i = 0; i < addedLength; i++) {
                 if (songToAdd->getTitle().compare(added[i]) == 0)
                     isThere = true;
             }
             if (!isThere)
                 check = true;
+            if (addedLength == songList->itemCount()){
+                check = true;
+                full = true;
+            }
         }
         if ((newPlaylist->calcDuration() + songToAdd->getDuration()) < duration) {
             newPlaylist->addSong(songToAdd);
             std::cout<<"song added" <<std::endl;
             added[addedLength] = songToAdd->getTitle();
             addedLength++;
+        }
+        if(full){
+            std::cout<<"Ran out of unique songs in the current library" <<std::endl;
         }
     }
     playlists[playlistCount] = newPlaylist;
@@ -149,9 +157,6 @@ std::string Library::playlistInfo(std::string title){
     return playlists[index]->getInfo();
 }
 
-SongList* Library::getSongList() {
-    return songList;
-}
 Playlist** Library::getPlaylist(){
     return playlists;
 }

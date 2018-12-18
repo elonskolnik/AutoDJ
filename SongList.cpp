@@ -245,7 +245,16 @@ void SongList::removeSong(std::string title, std::string artist){
     currItemCount--;
 }
 
-Song** SongList::getArray(){
-    return this->array;
+Song* SongList::getValueAt(int index){
+    return array[index];
 }
+
+float SongList::calcDuration(){
+    float duration = 0;
+    for(int i = 0; i < currItemCount; i++){
+        duration += array[i]->getDuration();
+    }
+    return duration;
+}
+
 

@@ -12,4 +12,5 @@ add_executable(AutoDJ
         Playlist.cpp
         Song.cpp
         SongLinked.cpp
-        SongList.cpp)
+        SongList.cpp
+        FileOut.cpp)

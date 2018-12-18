@@ -5,14 +5,14 @@
 #ifndef PROJECTPLAYLIST_PLAYLIST_H
 #define PROJECTPLAYLIST_PLAYLIST_H
 #include <iostream>
-#include "SongLinked.h"
+#include "List.h"
 
 
 
 class Playlist {
 private:
     std::string name;
-    SongLinked* songLinked;
+    List* songList;
     int songCount;
 
 

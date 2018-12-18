@@ -5,6 +5,7 @@
 #include "Playlist.h"
 #include "SongList.h"
 #include "Library.h"
+#include "FileOut.h"
 #include <fstream>
 
 
@@ -109,21 +110,7 @@ void userInterface(){
             std::cout<<"Please enter the name of the file you want to import:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
-            std::ifstream myfile(IndivCommand);
 
-            if (!myfile) {
-                std::cout << "Can't open input file!";
-            }
-
-            else {
-                myfile.open(IndivCommand);
-                std::string line;
-                while (getline(myfile, line)) {
-
-                    DJLibrary->importSong(line, line, 0);
-                }
-                myfile.close();
-            }
 
 
             } else if (command == "discontinue"){
@@ -226,7 +213,7 @@ void userInterface(){
         } else if (command == "quit"){
 
 
-            std::cout<<"Please enter the name of the file create:" <<std::endl;
+            std::cout<<"Please enter the name of the file you want to create:" <<std::endl;
             std::getline(std::cin, IndivCommand);
 
             std::ofstream file(IndivCommand);

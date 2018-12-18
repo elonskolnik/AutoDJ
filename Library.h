@@ -5,12 +5,12 @@
 
 #include "Song.h"
 #include "Playlist.h"
-#include "SongList.h"
+#include "List.h"
 #include <iostream>
 
 class Library {
 private:
-    SongList* songList;
+    List* songList;
     Playlist** playlists;
     int playlistCount;
     int playlistCapacity;
@@ -48,8 +48,6 @@ public:
 
     //return the contents of the given playlist
     std::string playlistInfo(std::string title);
-
-    SongList* getSongList();
 
     Playlist** getPlaylist();
 
