@@ -242,7 +242,4 @@ Song** SongList::getArray(){
     return this->array;
 }
 
-Song* SongList::getSongbyIndex(int index){
-    return array[index];
-}
 
