@@ -41,7 +41,7 @@ public:
 
     virtual std::string findArtist(std::string artist) =0;
 
-    virtual Song* findSong(std::string title, std::string artist) =0;
+    virtual int findSong(std::string title, std::string artist) =0;
 
     virtual void removeSong(std::string title, std::string artist) =0;
 

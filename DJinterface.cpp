@@ -449,8 +449,23 @@ void songListTester(){
 
     std::cout<<"Testing findSong" <<std::endl;
 
+    std::cout<<"Testing getValueAt" <<std::endl;
+    printAssertStringEqual("Box", songList4->getValueAt(3)->getTitle());
+
     std::cout<<"Testing removeSong" <<std::endl;
     songList3->removeSong("Bone", "A");
+    printAssertEquals(7, songList3->itemCount());
+    std::cout<<songList3->toString() <<std::endl;
+    songList3->removeSong("Top", "B");
+    printAssertEquals(6, songList3->itemCount());
+    std::cout<<songList3->toString() <<std::endl;
+    songList3->removeSong("Duck", "D");
+    printAssertEquals(5, songList3->itemCount());
+    std::cout<<songList3->toString() <<std::endl;
+    songList3->removeSong("Bob", "O");
+    printAssertEquals(5, songList3->itemCount());
+    std::cout<<songList3->toString() <<std::endl;
+    songList4->removeSong("Duck", "D");
 
    /** delete song1;
     delete song2;

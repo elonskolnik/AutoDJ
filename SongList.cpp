@@ -211,7 +211,7 @@ std::string SongList::findArtist(std::string artist){
     return artists;
 }
 
-Song* SongList::findSong(std::string title, std::string artist){
+int SongList::findSong(std::string title, std::string artist){
     int index = -1;
     for(int i = 0; i < currItemCount; i++){
         if(title == array[i]->getTitle() && artist == array[i]->getArtist()){
@@ -219,9 +219,9 @@ Song* SongList::findSong(std::string title, std::string artist){
         }
     }
     if(index < 0){
-        return nullptr;
+        return -1;
     }
-    return array[index];
+    return index;
 }
 
 void SongList::removeSong(std::string title, std::string artist){
@@ -247,6 +247,9 @@ void SongList::removeSong(std::string title, std::string artist){
 }
 
 Song* SongList::getValueAt(int index){
+    if(index > currItemCount-1 || index < 0){
+        throw std::invalid_argument("Invalid index");
+    }
     return array[index];
 }
 
@@ -256,28 +259,4 @@ float SongList::calcDuration(){
         duration+= array[i]->getDuration();
     }
     return duration;
-}
-
-/*int binFind(Song* array, int size, std::string valToFind, int indexAdd) {
-    /*if(size <= 0) {
-        return -1;
-    }
-    if(valToFind.compare(array[size/2])) { //in the middle if odd, higher end if even
-        return indexAdd + size/2;
-    }
-    if(valToFind < array[size/2]){
-        return binFind(array, size/2, valToFind, indexAdd);
-    }
-
-    else if(valToFind > array[size/2]){
-        if(size%2==0){
-            return binFind(array+(size/2), size/2, valToFind, size/2 + indexAdd);
-        }
-        else{
-            return binFind(array+(size/2+1), size/2, valToFind, size/2+1 + indexAdd);
-        }
-    }
-}*/
-int SongList::binFind(int size, std::string title, std::string artist) {
-    return 0;
 }
