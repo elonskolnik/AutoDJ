@@ -7,8 +7,6 @@
 
 #include "Song.h"
 
-
-
 class LinkedNode {
 
 private:

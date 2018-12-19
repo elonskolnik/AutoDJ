@@ -20,10 +20,6 @@ public:
     //Destructor
     virtual ~List() {}
 
-    /**
-     * appends the new item to the end of the list
-     * @post the list has an additional value in it, at the end
-     */
     virtual void addSong(Song* songToAdd) =0;
 
     virtual void addAlphabetical(Song* songToAdd) =0;

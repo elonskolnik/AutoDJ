@@ -41,8 +41,14 @@ public:
      */
     void addSong(Song *songToAdd);
 
+    /**
+     * @inserts a son at a given index
+     */
     void insertAt(Song *itemToAdd, int index);
 
+    /**
+     * @adds a song to the list alphabetically
+     */
     void addAlphabetical(Song *songToAdd);
 
     /**
@@ -74,14 +80,30 @@ public:
      * @return a string of all the songs by a particular artist
      */
     std::string findArtist(std::string artist);
+
+    /**
+     * @removes a value at index
+     */
     void removeValueAt(int index);
 
-        int findSong(std::string title, std::string artist);
+    /**
+     * @return the index of a song
+     */
+    int findSong(std::string title, std::string artist);
 
+    /**
+     * @removes a song
+     */
     void removeSong(std::string title, std::string artist);
 
+    /**
+     * @returns value at a certain index
+     */
     Song* getValueAt(int index);
 
+    /**
+     * @returns the duration
+     */
     float calcDuration();
 };
 

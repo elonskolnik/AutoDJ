@@ -20,8 +20,10 @@ SongList::SongList(int initialCapacity){
     currItemCount = 0;
 }
 
-//destructor
-SongList::~SongList(){
+/**
+ * @desructor
+ */
+ SongList::~SongList(){
     delete[] array;
     array = nullptr;
 }
@@ -57,14 +59,13 @@ void SongList::insertAt(Song* itemToAdd, int index) {
     }
 }
 
-
+/**
+ * adds a song alphabetically
+ */
 void SongList::addAlphabetical(Song* songToAdd) {
-
-
     if (currCapacity <= currItemCount - 1) {
         doubleCapacity();
     }
-
     bool placed=false;
 
     if (currItemCount==0){
@@ -72,7 +73,6 @@ void SongList::addAlphabetical(Song* songToAdd) {
         currItemCount+=1;
         placed=true;
     }
-
     int placehold;
     while(!placed){
         for (int x = 0; x < currItemCount; x++) {
@@ -138,7 +138,9 @@ void SongList::addAlphabetical(Song* songToAdd) {
     }
 
 }
-
+/**
+ * @adds a song normally
+ */
 void SongList::addSong(Song* songToAdd){
     if(currCapacity <= currItemCount-1) {
         doubleCapacity();
@@ -186,8 +188,9 @@ void SongList::clearList(){
 }
 
 /**
- * @return a string of all the songs by a particular artist
+ * @returns a string of the artiat that it's found
  */
+
 std::string SongList::findArtist(std::string artist){
     int count = 0;
     for(int i = 0; i < currItemCount; i++){
@@ -211,7 +214,9 @@ std::string SongList::findArtist(std::string artist){
     }
     return artists;
 }
-
+/**
+ * @returns the index of the song it's found
+ */
 int SongList::findSong(std::string title, std::string artist){
     int index = -1;
     for(int i = 0; i < currItemCount; i++){
@@ -224,7 +229,9 @@ int SongList::findSong(std::string title, std::string artist){
     }
     return index;
 }
-
+/**
+ * @removes a song
+ */
 void SongList::removeSong(std::string title, std::string artist){
     int index = -1;
     for(int i = 0; i < currItemCount; i++){
@@ -239,7 +246,9 @@ void SongList::removeSong(std::string title, std::string artist){
     removeValueAt(index);
 
 }
-
+/**
+ * aids the removing of the song proccess
+ */
 void SongList::removeValueAt(int index) {
     if (currItemCount<=0 || index < 0 || index > currCapacity) {
         throw std::out_of_range("invalid index");
@@ -251,14 +260,18 @@ void SongList::removeValueAt(int index) {
     currItemCount -= 1;
 }
 
-
+/**
+ * @returns song at a given index
+ */
 Song* SongList::getValueAt(int index){
     if(index > currItemCount-1 || index < 0){
         return nullptr;
     }
     return array[index];
 }
-
+/**
+ * @returns the total duration
+ */
 float SongList::calcDuration(){
     float duration = 0.0;
     for(int i = 0; i < currItemCount; i++){
