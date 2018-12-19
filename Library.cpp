@@ -174,7 +174,7 @@ Playlist* Library::findPlaylist(std::string title){
 }
 
 Song* Library::findSong(std::string title, std::string artist){
-   return songList->findSong(title, artist);
+   return songList->getValueAt(songList->findSong(title, artist));
 }
 
 void Library::emptyLibrary(){

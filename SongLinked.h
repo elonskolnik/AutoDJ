@@ -47,7 +47,7 @@ public:
 
     std::string findArtist(std::string artist);
 
-    Song* findSong(std::string title, std::string artist);
+    int findSong(std::string title, std::string artist);
 
     void removeSong(std::string title, std::string artist);
 
