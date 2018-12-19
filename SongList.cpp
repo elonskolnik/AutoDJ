@@ -136,6 +136,7 @@ void SongList::addAlphabetical(Song* songToAdd) {
             placed=true;
         }
     }
+
 }
 
 void SongList::addSong(Song* songToAdd){
@@ -233,22 +234,25 @@ void SongList::removeSong(std::string title, std::string artist){
         }
     }
     if(index < 0){
-        throw std::invalid_argument("Song not found");
+        std::cout<<"Song not found" <<std::endl;
     }
     if(index < currItemCount-1) {
         for (int i = index; i < currItemCount; i++) {
             delete array[i];
             array[i] = array[i + 1];
         }
+        currItemCount--;
     }
-    else
-        delete array[currItemCount-1];
-    currItemCount--;
+    else {
+        delete array[currItemCount - 1];
+        currItemCount--;
+    }
+
 }
 
 Song* SongList::getValueAt(int index){
     if(index > currItemCount-1 || index < 0){
-        throw std::invalid_argument("Invalid index");
+        return nullptr;
     }
     return array[index];
 }

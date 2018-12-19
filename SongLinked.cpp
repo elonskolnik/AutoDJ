@@ -115,25 +115,27 @@ Song* SongLinked::removeValueAtEnd(){
 }
 
 void SongLinked::addSong(Song* songToAdd){
-    if(findSong(songToAdd->getTitle(), songToAdd->getArtist())== nullptr) {
+    if(findSong(songToAdd->getTitle(), songToAdd->getArtist())== -1) {
         insertAtEnd(songToAdd);
     }
 }
 
-Song* SongLinked::findSong(std::string title, std::string artist){
-    LinkedNode* count=front;
+int SongLinked::findSong(std::string title, std::string artist){
+    LinkedNode* temp=front;
+    int count = 0;
     for(int i = 0; i < currItemCount; i++){
-        if(title == count->getItem()->getTitle() && artist == count->getItem()->getArtist()){
-            return count->getItem();
+        if(title == temp->getItem()->getTitle() && artist == temp->getItem()->getArtist()){
+            return count;
         }
-        count=count->getNext();
+        temp=temp->getNext();
+        count++;
 
     }
     if(front== nullptr){
-        return nullptr;
+        return -1;
         //throw std::invalid_argument("Could not find the given song");
     }
-    return nullptr;
+    return -1;
 }
 
 void SongLinked::removeSong(std::string title, std::string artist){

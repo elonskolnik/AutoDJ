@@ -345,7 +345,7 @@ void playlistTester(){
     playlist2->addSong(song6);
     playlist2->addSong(song7);
 
-    std::cout<<"Testing add song and getInfo" <<std::endl;
+    std::cout<<"Testing addSong and getInfo" <<std::endl;
     std::cout<<playlist1->getInfo() <<std::endl;
     std::cout<<playlist2->getInfo() <<std::endl;
 
@@ -402,6 +402,7 @@ void songListTester(){
     List* songList2 = new SongList(10);
     List* songList3 = new SongList(10);
     List* songList4 = new SongList(10);
+    List* songList5 = new SongList(10);
 
     std::cout<<"Testing addSong and toString" <<std::endl;
     songList1->addSong(song1);
@@ -450,9 +451,32 @@ void songListTester(){
     std::cout<<"Testing findSong" <<std::endl;
 
     std::cout<<"Testing getValueAt" <<std::endl;
-    printAssertStringEqual("Box", songList4->getValueAt(3)->getTitle());
+    printAssertStringEqual("Bone", songList1->getValueAt(0)->getTitle());
+    printAssertStringEqual("Car", songList1->getValueAt(1)->getTitle());
+    printAssertStringEqual("Dog", songList1->getValueAt(2)->getTitle());
+    printAssertStringEqual("Top", songList1->getValueAt(3)->getTitle());
+
+    printAssertStringEqual("Box", songList3->getValueAt(3)->getTitle());
+    printAssertStringEqual("Bone", songList3->getValueAt(0)->getTitle());
+    printAssertStringEqual("Duck", songList3->getValueAt(7)->getTitle());
+
+    if(songList4->getValueAt(10) == nullptr)
+        std::cout<<"pass" <<std::endl;
+    else
+        std::cout<<"FAIL" <<std::endl;
+    if(songList5->getValueAt(0) == nullptr)
+        std::cout<<"pass" <<std::endl;
+    else
+        std::cout<<"FAIL" <<std::endl;
+
+    std::cout<<"Testing calcDuration" <<std::endl;
+    printAssertEquals(0.0, songList5->calcDuration());
+    printAssertEquals(12.0, songList1->calcDuration());
+    printAssertEquals(10.0, songList2->calcDuration());
+    printAssertEquals(24.0, songList3->calcDuration());
 
     std::cout<<"Testing removeSong" <<std::endl;
+    std::cout<<songList3->toString() <<std::endl;
     songList3->removeSong("Bone", "A");
     printAssertEquals(7, songList3->itemCount());
     std::cout<<songList3->toString() <<std::endl;
@@ -467,17 +491,20 @@ void songListTester(){
     std::cout<<songList3->toString() <<std::endl;
     songList4->removeSong("Duck", "D");
 
-   /** delete song1;
     delete song2;
     delete song3;
     delete song4;
     delete song5;
     delete song6;
-    delete song7; **/
+    delete song7;
+    delete song7;
+    delete song8;
 
     delete songList1;
     delete songList2;
     delete songList3;
+    delete songList4;
+    delete songList5;
 }
 
 void songLinkedTester(){

@@ -13,12 +13,13 @@ Song::Song(){
     duration = 999;
     playCount = 999;
 }
-Song::Song(std::string title, std::string artist, float duration){
-    this->title=title;
-    this->artist=artist;
-    this->duration=duration;
-    this->playCount=0;
+Song::Song(std::string title, std::string artist, float duration) {
+    this->title = title;
+    this->artist = artist;
+    this->duration = duration;
+    this->playCount = 0;
 }
+
 std::string Song::getInfo(){
     return artist+"-"+title+"–"+std::to_string(duration) +"–"+ std::to_string(playCount);
 }
