@@ -262,5 +262,3 @@ float SongLinked::calcDuration(){
     return duration;
 }
 
-void SongLinked::addAlphabetical(Song *songToAdd) {
-}

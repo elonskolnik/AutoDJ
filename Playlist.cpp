@@ -29,7 +29,6 @@
 }
 
     void Playlist::removeSong(std::string title, std::string artist){
-        std::cout<<"here" <<std::endl;
         this->songList->removeSong(title,artist);
         this->songCount--;
 }

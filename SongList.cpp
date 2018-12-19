@@ -59,6 +59,8 @@ void SongList::insertAt(Song* itemToAdd, int index) {
 
 
 void SongList::addAlphabetical(Song* songToAdd) {
+
+
     if (currCapacity <= currItemCount - 1) {
         doubleCapacity();
     }
