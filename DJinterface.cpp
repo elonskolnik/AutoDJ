@@ -297,11 +297,14 @@ void songTester(){
     printAssertEquals(3.5, song1->getDuration());
     printAssertEquals(0.0, song2->getDuration());
 
-    std::cout<<"Testing getInfo" <<std::endl;
-    printAssertStringEqual("Bop-Boop-3.500000-0", song1->getInfo());
-    printAssertStringEqual("--0.000000-0", song2->getInfo());
+    std::cout<<"\n"<<"Testing getInfo" <<std::endl;
+    std::cout<<"Expecting  Bop-Boop–3.500000–0 " <<std::endl;
+    std::cout << song1->getInfo() << std::endl;
 
-    std::cout<<"Testing addToPlayCount" <<std::endl;
+    std::cout<<'\n'<<"Expecting  -–0.000000–0 " <<std::endl;
+    std::cout <<  song2->getInfo() << std::endl;
+
+    std::cout<< "\n"<<"Testing addToPlayCount" <<std::endl;
     song1->addToPlayCount();
     song2->addToPlayCount();
     printAssertEquals(1, song1->getPlayCount());
