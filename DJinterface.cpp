@@ -574,7 +574,8 @@ void songLinkedTester(){
 
     std::cout << '\n'<< "Testing insert at"<<std::endl;
     songLinked1->insertAt(song1,3);
-    printAssertStringEqual(song3->getTitle(),songLinked1->getValueAt(3)->getTitle());
+    std::cout << songLinked1->getValueAt(3)->getTitle()<< std::endl;
+    printAssertStringEqual(song1->getTitle(),songLinked1->getValueAt(3)->getTitle());
 
     songLinked1->insertAt(song7,4);
     printAssertStringEqual(song7->getTitle(),songLinked1->getValueAt(4)->getTitle());
@@ -592,8 +593,10 @@ void songLinkedTester(){
 
 
     std::cout << '\n'<< "Testing find song by title"<<std::endl;
-    std::cout << "Trying a song that doesn't exist - expecting a nullptr to be returned"<<std::endl;
-    std::cout << songLinked1->findSong(song4->getTitle(), song4->getTitle()) <<std::endl;
+    std::cout << "Trying a song that doesn't exist"<<std::endl;
+    printAssertEquals(-1,songLinked1->findSong(song4->getTitle(), song4->getTitle()));
+
+
     std::cout << "Trying a song that does exist"<<std::endl;
     printAssertStringEqual(song1->getTitle(),songLinked1->getValueAt(songLinked1->findSong(song1->getTitle(),song1->getArtist()))->getTitle());
 
