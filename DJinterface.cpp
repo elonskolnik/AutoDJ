@@ -388,13 +388,13 @@ void playlistTester(){
 }
 
 void songListTester(){
-    Song* song1 = new Song("A", "A", 3.0);
-    Song* song2 = new Song("B", "A", 2.0);
-    Song* song3 = new Song("C", "A", 3.0);
-    Song* song4 = new Song("D", "B", 4.0);
-    Song* song5 = new Song("E", "B", 3.0);
-    Song* song6 = new Song("F", "C", 2.0);
-    Song* song7 = new Song("G", "C", 3.0);
+    Song* song1 = new Song("Bone", "A", 3.0);
+    Song* song2 = new Song("Car", "A", 2.0);
+    Song* song3 = new Song("Dog", "A", 3.0);
+    Song* song4 = new Song("Top", "B", 4.0);
+    Song* song5 = new Song("Box", "B", 3.0);
+    Song* song6 = new Song("Jack", "C", 2.0);
+    Song* song7 = new Song("Raft", "C", 3.0);
 
     List* songList1 = new SongList(10);
     List* songList2 = new SongList(10);
