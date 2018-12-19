@@ -13,6 +13,24 @@ void printAssertEquals(int expected, int actual){
     }
 }
 
+void printAssertFloatEquals(bool expected, bool actual){
+    if (expected == actual){
+        std::cout << "pass" << std::endl;
+    }
+    else {
+        std::cout << "FAIL, expected: " << expected << "\tactual: " << actual << std::endl;
+    }
+}
+
+void printAssertBoolEquals(bool expected, bool actual){
+    if (expected == actual){
+        std::cout << "pass" << std::endl;
+    }
+    else {
+        std::cout << "FAIL, expected: " << expected << "\tactual: " << actual << std::endl;
+    }
+}
+
 void printAssertCloseToEqual(float expected, float actual, float errorMargin ){
     float diff = expected - actual;
     if ( diff <= errorMargin && diff >= -errorMargin){

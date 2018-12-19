@@ -9,6 +9,7 @@
 //constructor
     Playlist::Playlist(){
       this->name = "junk";
+      //we kept the name songList throughout, but playlist is using SongLinked as its SongList
       this->songList= new SongLinked();
       this->songCount = 0;
 }

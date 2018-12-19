@@ -452,11 +452,129 @@ void songListTester(){
     std::cout<<"Testing removeSong" <<std::endl;
     songList3->removeSong("Bone", "A");
 
+   /** delete song1;
+    delete song2;
+    delete song3;
+    delete song4;
+    delete song5;
+    delete song6;
+    delete song7; **/
 
+    delete songList1;
+    delete songList2;
+    delete songList3;
 }
 
 void songLinkedTester(){
+    Song* song1 = new Song("Bone", "A", 3.0);
+    Song* song2 = new Song("Car", "A", 2.0);
+    Song* song3 = new Song("Dog", "A", 3.0);
+    Song* song4 = new Song("Top", "B", 4.0);
+    Song* song5 = new Song("Box", "B", 3.0);
+    Song* song6 = new Song("Jack", "C", 2.0);
+    Song* song7 = new Song("Raft", "C", 3.0);
 
+    List* songLinked1 = new SongLinked();
+    List* songLinked2 = new SongLinked();
+
+    std::cout << "Testing isEmpty"<<std::endl;
+
+    std::cout << "Testing empty songlist"<<std::endl;
+    printAssertBoolEquals(true,songLinked1->isEmpty());
+
+    std::cout <<'\n'<< "Adding a song"<<std::endl;
+    songLinked1->addSong(song1);
+
+    std::cout << "Seeing if isEmpty works on playlist with content"<<std::endl;
+    printAssertBoolEquals(false,songLinked1->isEmpty());
+
+    std::cout << "Current item Count should be 1"<<std::endl;
+    printAssertEquals(1,songLinked1->itemCount());
+
+    std::cout << '\n'<< "More adding and item count tests"<<std::endl;
+    songLinked1->addSong(song2);
+    printAssertEquals(2,songLinked1->itemCount());
+    songLinked1->addSong(song3);
+    printAssertEquals(3,songLinked1->itemCount());
+    songLinked1->addSong(song4);
+    printAssertEquals(4,songLinked1->itemCount());
+    songLinked1->addSong(song5);
+    printAssertEquals(5,songLinked1->itemCount());
+    songLinked1->addSong(song6);
+    printAssertEquals(6,songLinked1->itemCount());
+
+    std::cout << '\n'<< "To String Test"<<std::endl;
+    std::cout << "Test on playlist with 7 songs in it"<<std::endl;
+    std::cout<<songLinked1->toString()<<std::endl;
+    std::cout << "Test on playlist with nothing in it"<<std::endl;
+    std::cout << songLinked2->toString()<< std::endl;
+
+    std::cout << '\n'<< "Calc Duration Test"<<std::endl;
+    printAssertFloatEquals(18.0,songLinked1->calcDuration());
+    printAssertFloatEquals(0.0,songLinked2->calcDuration());
+
+    std::cout << '\n'<< "Testing get index"<<std::endl;
+    printAssertStringEqual(song1->getTitle(),songLinked1->getValueAt(0)->getTitle());
+    printAssertStringEqual(song2->getTitle(),songLinked1->getValueAt(1)->getTitle());
+    printAssertStringEqual(song3->getTitle(),songLinked1->getValueAt(2)->getTitle());
+    printAssertStringEqual(song4->getTitle(),songLinked1->getValueAt(3)->getTitle());
+    //we know that the throw exception will work, but it's gonna mess up our tester if we do that here
+
+    std::cout << '\n'<< "Testing remove song"<<std::endl;
+    //this ensures that the song that is supposed to be at the removed song's spot is there
+    //this ensures that remove at front, remove at end, and remove work as well
+    songLinked1->removeSong(song1->getTitle(),song1->getArtist());
+    printAssertStringEqual(song2->getTitle(),songLinked1->getValueAt(0)->getTitle());
+    songLinked1->removeSong(song7->getTitle(),song7->getArtist());
+    printAssertStringEqual(song6->getTitle(),songLinked1->getValueAt(4)->getTitle());
+    songLinked1->removeSong(song4->getTitle(),song4->getArtist());
+    printAssertStringEqual(song5->getTitle(),songLinked1->getValueAt(2)->getTitle());
+
+    std::cout << '\n'<< "Testing insert at"<<std::endl;
+    songLinked1->insertAt(song1,3);
+    printAssertStringEqual(song3->getTitle(),songLinked1->getValueAt(3)->getTitle());
+
+    songLinked1->insertAt(song7,4);
+    printAssertStringEqual(song7->getTitle(),songLinked1->getValueAt(4)->getTitle());
+    //we know that it throws an exception for things that are out of range and testing it in the tester won't work
+    //won't test duplicate values with insertAt, because it not designed to deal with duplicate values (it's a behind the scenes thing
+    // addSong is designed to deal with preventing duplicate values
+
+    std::cout << '\n'<< "Testing attempt to add duplicate values"<<std::endl;
+    std::cout << "Here is what it looks like before the attempt"<<std::endl;
+    std::cout<<songLinked1->toString()<<std::endl;
+    songLinked1->addSong(song1);
+    songLinked1->addSong(song7);
+    std::cout << '\n'<<"Here is what it looks like after the attempt"<<std::endl;
+    std::cout<<songLinked1->toString()<<std::endl;
+
+
+    std::cout << '\n'<< "Testing find song by title"<<std::endl;
+    std::cout << "Trying a song that doesn't exist - expecting a nullptr to be returned"<<std::endl;
+    std::cout << songLinked1->findSong(song4->getTitle(), song4->getTitle()) <<std::endl;
+    std::cout << "Trying a song that does exist"<<std::endl;
+    printAssertStringEqual(song1->getTitle(),songLinked1->findSong(song1->getTitle(),song1->getArtist())->getTitle());
+
+    std::cout << '\n'<< "Testing find song by artist"<<std::endl;
+    std::cout << "Trying an artist that doesn't exist - expecting '{}' to be returned"<<std::endl;
+    std::cout << songLinked1->findArtist("Fake artist") <<std::endl;
+    std::cout << "Trying an artist that does exist"<<std::endl;
+    printAssertStringEqual(song1->getArtist(),songLinked1->findArtist(song1->getArtist()));
+
+    std::cout << '\n'<< "Testing clear list"<<std::endl;
+    songLinked1->clearList();
+    printAssertEquals(0,songLinked1->itemCount());
+
+    delete song1;
+    delete song2;
+    delete song3;
+    delete song4;
+    delete song5;
+    delete song6;
+    delete song7;
+
+    delete songLinked1;
+    delete songLinked2;
 }
 
 void libraryTester(){

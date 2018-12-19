@@ -16,6 +16,11 @@
  */
 void printAssertEquals(int expected, int actual);
 
+void printAssertBoolEquals(bool expected, bool actual);
+
+void printAssertFloatEquals(bool expected, bool actual);
+
+
 /**
  * reports whether floats are close enough to equal or not
  * @param expected - the value you expect the actual value to be
@@ -34,6 +39,7 @@ void printAssertCloseToEqual(float expected, float actual, float errorMargin);
  * @post prints only "pass" if the arrays are equal,
  *      Else it prints "FAIL" and the number of values that are different
  */
+
 void printAssertArrayEqual(int* expected, int* actual, int size);
 
 /**

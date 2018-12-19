@@ -115,7 +115,9 @@ Song* SongLinked::removeValueAtEnd(){
 }
 
 void SongLinked::addSong(Song* songToAdd){
-    insertAtEnd(songToAdd);
+    if(findSong(songToAdd->getTitle(), songToAdd->getArtist())== nullptr) {
+        insertAtEnd(songToAdd);
+    }
 }
 
 Song* SongLinked::findSong(std::string title, std::string artist){
@@ -128,7 +130,8 @@ Song* SongLinked::findSong(std::string title, std::string artist){
 
     }
     if(front== nullptr){
-        throw std::invalid_argument("Could not find the given song");
+        return nullptr;
+        //throw std::invalid_argument("Could not find the given song");
     }
     return nullptr;
 }
@@ -253,12 +256,16 @@ Song* SongLinked::removeValueAt(int index){
 }
 
 float SongLinked::calcDuration(){
-    float duration;
+    float duration=0.0;
     LinkedNode* count = front;
     for(int i = 0; i < currItemCount; i++){
         duration += count->getItem()->getDuration();
         count=count->getNext();
     }
     return duration;
+}
+
+void SongLinked::addAlphabetical(Song* songToAdd){
+    std::cout << "We are not using add Alphabetical for this SongLinked implementation"<<std::endl;
 }
 
