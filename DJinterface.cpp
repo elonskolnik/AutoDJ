@@ -344,7 +344,7 @@ void playlistTester(){
     playlist2->addSong(song6);
     playlist2->addSong(song7);
 
-    std::cout<<"Testing addSong and getInfo" <<std::endl;
+    std::cout<<"Testing add song and getInfo" <<std::endl;
     std::cout<<playlist1->getInfo() <<std::endl;
     std::cout<<playlist2->getInfo() <<std::endl;
 
@@ -398,6 +398,7 @@ void songListTester(){
 
     List* songList1 = new SongList(10);
     List* songList2 = new SongList(10);
+    List* songList3 = new SongList(10);
 
     std::cout<<"Testing addSong and toString" <<std::endl;
     songList1->addSong(song1);
@@ -412,15 +413,16 @@ void songListTester(){
     std::cout<<songList2->toString() <<std::endl;
 
     std::cout<<"Testing addAlphabetical" <<std::endl;
-    songList1->addAlphabetical(song7);
-    songList1->addAlphabetical(song5);
-    songList1->addAlphabetical(song4);
-    songList1->addAlphabetical(song2);
-    songList1->addAlphabetical(song3);
-    songList1->addAlphabetical(song1);
-    songList1->addAlphabetical(song6);
-    std::cout<<songList1->toString() <<std::endl;
+    songList3->addAlphabetical(song7);
+    songList3->addAlphabetical(song5);
+    songList3->addAlphabetical(song4);
+    songList3->addAlphabetical(song2);
+    songList3->addAlphabetical(song3);
+    songList3->addAlphabetical(song1);
+    songList3->addAlphabetical(song6);
+    std::cout<<songList3->toString() <<std::endl;
 
+    std::cout<<"Testing isEmpty" <<std::endl;
 }
 
 void songLinkedTester(){
