@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include "Song.h"
+#include <math.h>
 
 //Constructor
 Song::Song(){
@@ -27,6 +28,10 @@ std::string Song::getArtist(){
 }
 std::string Song::getTitle(){
     return title;
+}
+
+int Song::getPlayCount(){
+    return playCount;
 }
 float Song::getDuration(){
     return duration;

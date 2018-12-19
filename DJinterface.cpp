@@ -285,27 +285,29 @@ void songTester(){
     Song* song2 = new Song("", "", 0.0);
 
     std::cout<<"Testing getArtist" <<std::endl;
-    printAssertEquals("Bop", song1->getArtist());
-    printAssertEquals("", song2->getArtist());
+    printAssertStringEqual("Bop", song1->getArtist());
+    printAssertStringEqual("", song2->getArtist());
 
     std::cout<<"Testing getSong" <<std::endl;
-    printAssertEquals("Boop", song1->getTitle());
-    printAssertEquals("", song2->getTitle());
+    printAssertStringEqual("Boop", song1->getTitle());
+    printAssertStringEqual("", song2->getTitle());
 
     std::cout<<"Testing getDuration" <<std::endl;
     printAssertEquals(3.5, song1->getDuration());
     printAssertEquals(0.0, song2->getDuration());
 
     std::cout<<"Testing getInfo" <<std::endl;
-    printAssertEquals("Bop-Boop-3.5-0", song1->getInfo());
-    printAssertEquals("--0.0-0", song2->getInfo());
-
-    song1->addToPlayCount();
-    song2->addToPlayCount();
+    printAssertStringEqual("Bop-Boop-3.500000-0", song1->getInfo());
+    printAssertStringEqual("--0.000000-0", song2->getInfo());
 
     std::cout<<"Testing addToPlayCount" <<std::endl;
-    printAssertEquals("Bop-Boop-3.5-1", song1->getInfo());
-    printAssertEquals("--0.0-1", song2->getInfo());
+    song1->addToPlayCount();
+    song2->addToPlayCount();
+    printAssertEquals(1, song1->getPlayCount());
+    printAssertEquals(1, song2->getPlayCount());
+    song1->addToPlayCount();
+    song1->addToPlayCount();
+    printAssertEquals(3, song1->getPlayCount());
 
     delete song1;
     delete song2;
@@ -323,6 +325,10 @@ void playlistTester(){
     Playlist* playlist1 = new Playlist("Test1");
     Playlist* playlist2 = new Playlist("Test2");
 
+    std::cout<<"Testing getTitle" <<std::endl;
+    printAssertStringEqual("Test1", playlist1->getTitle());
+    printAssertStringEqual("Test2", playlist2->getTitle());
+
     std::cout<<"Testing isEmpty" <<std::endl;
     printAssertEquals(true, playlist1->isEmpty());
     playlist1->addSong(song1);
@@ -338,18 +344,44 @@ void playlistTester(){
     playlist2->addSong(song6);
     playlist2->addSong(song7);
 
-    std::cout<<"Testing getInfo" <<std::endl;
+    std::cout<<"Testing addSong and getInfo" <<std::endl;
     std::cout<<playlist1->getInfo() <<std::endl;
+    std::cout<<playlist2->getInfo() <<std::endl;
 
-    std::cout<<"Testing removeSong" <<std::endl;
+    /*std::cout<<"Testing removeSong" <<std::endl;
     playlist1->removeSong("A", "A");
+    std::cout<<playlist1->getInfo()<<std::endl;
     playlist1->removeSong("C", "C");
     printAssertEquals(false, playlist1->isEmpty());
+    std::cout<<playlist1->getInfo()<<std::endl;
     playlist1->removeSong("B", "B");
-    printAssertEquals(true, playlist1->isEmpty());
+    printAssertEquals(true, playlist1->isEmpty());*/
 
+    std::cout<<"Testing calcDuration" <<std::endl;
+    printAssertEquals(20.0, playlist2->calcDuration());
+    playlist2->addSong(song6);
+    playlist2->addSong(song7);
+    printAssertEquals(25.0, playlist2->calcDuration());
 
+    std::cout<<"Testing playNext" <<std::endl;
+    printAssertStringEqual("A-A-3.000000-0", playlist2->playNext());
+    printAssertStringEqual("B-B-2.000000-0", playlist2->playNext());
+    printAssertEquals(1, song1->getPlayCount());
+    printAssertEquals(1, song2->getPlayCount());
+    printAssertStringEqual("C-C-3.000000-0", playlist2->playNext());
+    printAssertStringEqual("F-F-2.000000-0", playlist2->playNext());
+    printAssertStringEqual("G-G-3.000000-0", playlist2->playNext());
+    printAssertStringEqual("The current playlist is empty", playlist2->playNext());
+    printAssertStringEqual("The current playlist is empty", playlist2->playNext());
+    printAssertEquals(true, playlist2->isEmpty());
 
+    delete song1;
+    delete song2;
+    delete song3;
+    delete song4;
+    delete song5;
+    delete song6;
+    delete song7;
 
     delete playlist1;
     delete playlist2;
@@ -360,6 +392,10 @@ void songListTester(){
 }
 
 void songLinkedTester(){
+
+}
+
+void libraryTester(){
 
 }
 
@@ -377,30 +413,36 @@ void tester(){
     std::cout <<"-----------------" <<std::endl;
     songTester();
 
-    std::cout <<"Playlist Class Tester" << std::endl;
+    std::cout <<"\nPlaylist Class Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     playlistTester();
 
-    std::cout <<"SongList Class Tester" << std::endl;
+    std::cout <<"\nLibrary Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    libraryTester();
+
+    std::cout <<"\nSongList Class Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     songListTester();
 
-    std::cout <<"SongLinked Tester" << std::endl;
+    std::cout <<"\nSongLinked Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     songLinkedTester();
 
-    std::cout <<"Interface Tester" << std::endl;
+
+
+    std::cout <<"\nInterface Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     interfaceTester();
 
-    std::cout <<"File Tester" << std::endl;
+    std::cout <<"\nFile Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     fileTester();
 }
 
 int main(){
     srand(time(NULL));
-    userInterface();
+    //userInterface();
     tester();
 
     return 0;

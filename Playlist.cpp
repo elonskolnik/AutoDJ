@@ -29,7 +29,9 @@
 }
 
     void Playlist::removeSong(std::string title, std::string artist){
+        std::cout<<"here" <<std::endl;
         this->songList->removeSong(title,artist);
+        this->songCount--;
 }
     void Playlist::addSong(Song* songToAdd){
         this->songList->addSong(songToAdd);
@@ -39,6 +41,9 @@
         return this->songList->isEmpty();
 }
     std::string Playlist::playNext(){
+        if(isEmpty()){
+            return "The current playlist is empty";
+        }
         Song* songPtr = songList->getValueAt(0);
         std::string song = songPtr->getInfo();
         songList->getValueAt(0)->addToPlayCount();

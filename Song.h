@@ -20,6 +20,7 @@ public:
 	std::string getInfo();
 	std::string getArtist();
 	std::string getTitle();
+	int getPlayCount();
 	float getDuration();
 	void addToPlayCount();
 };

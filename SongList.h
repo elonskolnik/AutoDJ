@@ -75,13 +75,16 @@ public:
      */
     std::string findArtist(std::string artist);
 
-    Song *findSong(std::string title, std::string artist);
+    Song* findSong(std::string title, std::string artist);
 
     void removeSong(std::string title, std::string artist);
 
     Song* getValueAt(int index);
 
     float calcDuration();
+
+    int binFind(int size, std::string title, std::string artist);
 };
+
 
 #endif //COMP220_SONGLIST_H
