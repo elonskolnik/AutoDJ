@@ -145,10 +145,6 @@ void SongLinked::removeSong(std::string title, std::string artist){
             removeValueAt(i);
         }
         count=count->getNext();
-
-    }
-    if(front== nullptr){
-        throw std::invalid_argument("Could not find the given song");
     }
 }
 

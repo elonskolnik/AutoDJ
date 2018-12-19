@@ -20,7 +20,6 @@
         this->songList= new SongLinked();
 
         //if upNext is nullptr, that means that the playlist is empty
-        //****NOTE FOR DJ implementation - know that the playlist is empty
         this->songCount= 0;
 }
 

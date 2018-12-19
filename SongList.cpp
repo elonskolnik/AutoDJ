@@ -226,7 +226,6 @@ int SongList::findSong(std::string title, std::string artist){
 }
 
 void SongList::removeSong(std::string title, std::string artist){
-    std::cout<<"here" <<std::endl;
     int index = -1;
     for(int i = 0; i < currItemCount; i++){
         if(array[i]->getTitle() == title && array[i]->getArtist() == artist){
@@ -234,21 +233,24 @@ void SongList::removeSong(std::string title, std::string artist){
         }
     }
     if(index < 0){
-        std::cout<<"Song not found" <<std::endl;
-    }
-    if(index < currItemCount-1) {
-        for (int i = index; i < currItemCount; i++) {
-            delete array[i];
-            array[i] = array[i + 1];
-        }
-        currItemCount--;
-    }
-    else {
-        delete array[currItemCount - 1];
-        currItemCount--;
+        throw std::out_of_range("song does not exist in the list");
     }
 
+    removeValueAt(index);
+
 }
+
+void SongList::removeValueAt(int index) {
+    if (currItemCount<=0 || index < 0 || index > currCapacity) {
+        throw std::out_of_range("invalid index");
+    }
+
+    for (int x=index; x < currItemCount-1; x++) {
+        array[x] = array[x + 1];
+    }
+    currItemCount -= 1;
+}
+
 
 Song* SongList::getValueAt(int index){
     if(index > currItemCount-1 || index < 0){
@@ -264,3 +266,5 @@ float SongList::calcDuration(){
     }
     return duration;
 }
+
+

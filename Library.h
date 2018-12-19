@@ -24,8 +24,10 @@ public:
     //Destructor
     ~Library();
 
+    //imports a song
     void importSong(std::string title, std::string artist, float duration);
 
+    //imports a playlist
     void newPlaylist(std::string name);
 
     //creates a new playlist of the given length composed of randomly selected songs
@@ -49,10 +51,13 @@ public:
     //return the contents of the given playlist
     std::string playlistInfo(std::string title);
 
+    //returns a playlist pointer
     Playlist** getPlaylist();
 
+    //finds a playlist
     Playlist* findPlaylist(std::string title);
 
+    //finds a song
     Song* findSong(std::string title, std::string artist);
 
     void emptyLibrary();

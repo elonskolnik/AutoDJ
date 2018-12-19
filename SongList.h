@@ -74,8 +74,9 @@ public:
      * @return a string of all the songs by a particular artist
      */
     std::string findArtist(std::string artist);
+    void removeValueAt(int index);
 
-    int findSong(std::string title, std::string artist);
+        int findSong(std::string title, std::string artist);
 
     void removeSong(std::string title, std::string artist);
 
