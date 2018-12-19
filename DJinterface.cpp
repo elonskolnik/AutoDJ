@@ -5,6 +5,7 @@
 #include "Song.h"
 #include "Playlist.h"
 #include "SongList.h"
+#include "SongLinked.h"
 #include "Library.h"
 #include "TestLib.h"
 #include <fstream>
@@ -395,10 +396,12 @@ void songListTester(){
     Song* song5 = new Song("Box", "B", 3.0);
     Song* song6 = new Song("Jack", "C", 2.0);
     Song* song7 = new Song("Raft", "C", 3.0);
+    Song* song8 = new Song("Duck", "D", 4.0);
 
     List* songList1 = new SongList(10);
     List* songList2 = new SongList(10);
     List* songList3 = new SongList(10);
+    List* songList4 = new SongList(10);
 
     std::cout<<"Testing addSong and toString" <<std::endl;
     songList1->addSong(song1);
@@ -416,6 +419,7 @@ void songListTester(){
     songList3->addAlphabetical(song7);
     songList3->addAlphabetical(song5);
     songList3->addAlphabetical(song4);
+    songList3->addAlphabetical(song8);
     songList3->addAlphabetical(song2);
     songList3->addAlphabetical(song3);
     songList3->addAlphabetical(song1);
@@ -423,6 +427,32 @@ void songListTester(){
     std::cout<<songList3->toString() <<std::endl;
 
     std::cout<<"Testing isEmpty" <<std::endl;
+    printAssertEquals(true, songList4->isEmpty());
+    printAssertEquals(false, songList3->isEmpty());
+
+    std::cout<<"Testing itemCount" <<std::endl;
+    printAssertEquals(8, songList3->itemCount());
+    printAssertEquals(0, songList4->itemCount());
+    songList4->addSong(song5);
+    printAssertEquals(1, songList4->itemCount());
+    songList4->addSong(song4);
+    printAssertEquals(2, songList4->itemCount());
+    printAssertEquals(4, songList1->itemCount());
+
+    std::cout<<"Testing findArtist" <<std::endl;
+    std::cout<<songList4->findArtist("A") <<std::endl;
+    std::cout<<songList3->findArtist("A") <<std::endl;
+    std::cout<<songList3->findArtist("B") <<std::endl;
+    std::cout<<songList3->findArtist("C") <<std::endl;
+    std::cout<<songList3->findArtist("D") <<std::endl;
+    std::cout<<songList3->findArtist("E") <<std::endl;
+
+    std::cout<<"Testing findSong" <<std::endl;
+
+    std::cout<<"Testing removeSong" <<std::endl;
+    songList3->removeSong("Bone", "A");
+
+
 }
 
 void songLinkedTester(){
