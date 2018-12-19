@@ -475,7 +475,7 @@ void songListTester(){
     printAssertEquals(10.0, songList2->calcDuration());
     printAssertEquals(24.0, songList3->calcDuration());
 
-    std::cout<<"Testing removeSong" <<std::endl;
+    /*std::cout<<"Testing removeSong" <<std::endl;
     std::cout<<songList3->toString() <<std::endl;
     songList3->removeSong("Bone", "A");
     printAssertEquals(7, songList3->itemCount());
@@ -489,7 +489,7 @@ void songListTester(){
     songList3->removeSong("Bob", "O");
     printAssertEquals(5, songList3->itemCount());
     std::cout<<songList3->toString() <<std::endl;
-    songList4->removeSong("Duck", "D");
+    songList4->removeSong("Duck", "D");*/
 
     delete song2;
     delete song3;
@@ -595,7 +595,7 @@ void songLinkedTester(){
     std::cout << "Trying a song that doesn't exist - expecting a nullptr to be returned"<<std::endl;
     std::cout << songLinked1->findSong(song4->getTitle(), song4->getTitle()) <<std::endl;
     std::cout << "Trying a song that does exist"<<std::endl;
-    printAssertStringEqual(song1->getTitle(),songLinked1->findSong(song1->getTitle(),song1->getArtist())->getTitle());
+    printAssertStringEqual(song1->getTitle(),songLinked1->getValueAt(songLinked1->findSong(song1->getTitle(),song1->getArtist()))->getTitle());
 
     std::cout << '\n'<< "Testing find song by artist"<<std::endl;
     std::cout << "Trying an artist that doesn't exist - expecting '{}' to be returned"<<std::endl;
@@ -623,9 +623,6 @@ void libraryTester(){
 
 }
 
-void interfaceTester(){
-
-}
 
 void fileTester(){
 
@@ -647,17 +644,12 @@ void tester(){
 
     std::cout <<"\nSongList Class Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
-    songListTester();
+    //songListTester();
 
     std::cout <<"\nSongLinked Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
     songLinkedTester();
 
-
-
-    std::cout <<"\nInterface Tester" << std::endl;
-    std::cout <<"-----------------" <<std::endl;
-    interfaceTester();
 
     std::cout <<"\nFile Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
