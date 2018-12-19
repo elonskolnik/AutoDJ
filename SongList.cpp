@@ -256,11 +256,11 @@ float SongList::calcDuration(){
     return duration;
 }
 
-int binFind(Song* array, int size, std::string valToFind, int indexAdd){
-    if(size <= 0) {
+/*int binFind(Song* array, int size, std::string valToFind, int indexAdd) {
+    /*if(size <= 0) {
         return -1;
     }
-    if(valToFind == array[size/2]) { //in the middle if odd, higher end if even
+    if(valToFind.compare(array[size/2])) { //in the middle if odd, higher end if even
         return indexAdd + size/2;
     }
     if(valToFind < array[size/2]){
@@ -275,8 +275,7 @@ int binFind(Song* array, int size, std::string valToFind, int indexAdd){
             return binFind(array+(size/2+1), size/2, valToFind, size/2+1 + indexAdd);
         }
     }
-}
-
+}*/
 int SongList::binFind(int size, std::string title, std::string artist) {
+    return 0;
 }
-

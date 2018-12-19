@@ -348,14 +348,14 @@ void playlistTester(){
     std::cout<<playlist1->getInfo() <<std::endl;
     std::cout<<playlist2->getInfo() <<std::endl;
 
-    /*std::cout<<"Testing removeSong" <<std::endl;
+    std::cout<<"Testing removeSong" <<std::endl;
     playlist1->removeSong("A", "A");
     std::cout<<playlist1->getInfo()<<std::endl;
     playlist1->removeSong("C", "C");
     printAssertEquals(false, playlist1->isEmpty());
     std::cout<<playlist1->getInfo()<<std::endl;
     playlist1->removeSong("B", "B");
-    printAssertEquals(true, playlist1->isEmpty());*/
+    printAssertEquals(true, playlist1->isEmpty());
 
     std::cout<<"Testing calcDuration" <<std::endl;
     printAssertEquals(20.0, playlist2->calcDuration());
@@ -388,6 +388,38 @@ void playlistTester(){
 }
 
 void songListTester(){
+    Song* song1 = new Song("A", "A", 3.0);
+    Song* song2 = new Song("B", "A", 2.0);
+    Song* song3 = new Song("C", "A", 3.0);
+    Song* song4 = new Song("D", "B", 4.0);
+    Song* song5 = new Song("E", "B", 3.0);
+    Song* song6 = new Song("F", "C", 2.0);
+    Song* song7 = new Song("G", "C", 3.0);
+
+    List* songList1 = new SongList(10);
+    List* songList2 = new SongList(10);
+
+    std::cout<<"Testing addSong and toString" <<std::endl;
+    songList1->addSong(song1);
+    songList1->addSong(song2);
+    songList1->addSong(song3);
+    songList1->addSong(song4);
+
+    songList2->addSong(song1);
+    songList2->addSong(song4);
+    songList2->addSong(song5);
+    std::cout<<songList1->toString() <<std::endl;
+    std::cout<<songList2->toString() <<std::endl;
+
+    std::cout<<"Testing addAlphabetical" <<std::endl;
+    songList1->addAlphabetical(song7);
+    songList1->addAlphabetical(song5);
+    songList1->addAlphabetical(song4);
+    songList1->addAlphabetical(song2);
+    songList1->addAlphabetical(song3);
+    songList1->addAlphabetical(song1);
+    songList1->addAlphabetical(song6);
+    std::cout<<songList1->toString() <<std::endl;
 
 }
 
@@ -415,7 +447,7 @@ void tester(){
 
     std::cout <<"\nPlaylist Class Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
-    playlistTester();
+    //playlistTester();
 
     std::cout <<"\nLibrary Tester" << std::endl;
     std::cout <<"-----------------" <<std::endl;
