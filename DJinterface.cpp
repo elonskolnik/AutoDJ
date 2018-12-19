@@ -6,6 +6,7 @@
 #include "Playlist.h"
 #include "SongList.h"
 #include "Library.h"
+#include "TestLib.h"
 #include <fstream>
 
 void fileToLibrary(Library* currentLib, std::string fileName) {
@@ -13,8 +14,7 @@ void fileToLibrary(Library* currentLib, std::string fileName) {
     std::string artist, title, duration;
     std::ifstream infile(fileName);
     if (infile) {
-        while (infile) {
-            getline(infile, line);
+        while (getline(infile, line)) {
             std::stringstream splitter(line);
             if (std::to_string(line.at(0)) != "*") {
                 getline(splitter, artist, '-');
@@ -24,14 +24,49 @@ void fileToLibrary(Library* currentLib, std::string fileName) {
             if (currentLib->findSong(title, artist) == nullptr) {
                 currentLib->importSong(title, artist, stof(duration));
             } else {
-                std::cout << "Song: " << title << " by " << artist << " already exists" <<std::endl;
+                std::cout << "Song " << title << " by " << artist << " already exists" <<std::endl;
             }
-
         }
         infile.close();
         std::cout<<"Songs imported" <<std::endl;
     } else {
         std::cout<<"Could not find the requested file" <<std::endl;
+    }
+}
+
+void libraryToFile(Library* currentLib, std::string fileout){
+    std::ofstream file(fileout);
+
+    file << currentLib->songsInfo();
+
+    file << "\n";
+    file << "*";
+
+    file << currentLib->playlistsInfo();
+    file.close();
+}
+
+void discontinueFile(Library* currentLib, std::string fileName) {
+    std::string line;
+    std::string artist, title, duration;
+    std::ifstream infile(fileName);
+    if (infile) {
+        while (getline(infile, line)) {
+            std::stringstream splitter(line);
+            if (std::to_string(line.at(0)) != "*") {
+                getline(splitter, artist, '-');
+                getline(splitter, title, '-');
+                getline(splitter, duration, '-');
+            }
+            if (currentLib->findSong(title, artist) != nullptr) {
+                currentLib->discontinue(title, artist);
+            } else {
+                std::cout << "Song " << title << " by " << artist << " does not exist in the current library"
+                          << std::endl;
+            }
+        }
+        infile.close();
+        std::cout << "Songs discontinued" << std::endl;
     }
 }
 
@@ -130,9 +165,10 @@ void userInterface(){
             std::getline(std::cin, IndivCommand);
             fileToLibrary(DJLibrary, IndivCommand);
 
-            } else if (command == "discontinue"){
-            DJLibrary->emptyLibrary();
-            //We are going to have to revist this one
+        } else if (command == "discontinue"){
+            std::cout<<"Please enter the name of the file you want to discontinue from: " <<std::endl;
+            std::getline(std::cin, IndivCommand);
+            discontinueFile(DJLibrary, IndivCommand);
 
         } else if (command == "playlists"){
             std::cout<<DJLibrary->playlistsInfo() <<std::endl;
@@ -191,7 +227,7 @@ void userInterface(){
                 std::getline(std::cin, IndivCommand3);
 
                 if(DJLibrary->findSong(IndivCommand2, IndivCommand3) == nullptr)
-                    std::cout<<"Could not find the given song"<<std::endl;
+                    std::cout<<"Could not find the given song" <<std::endl;
 
                 else{
                     DJLibrary->findPlaylist(IndivCommand)->removeSong(IndivCommand2, IndivCommand3);
@@ -232,20 +268,10 @@ void userInterface(){
         } else if (command == "quit"){
             std::cout<<"Please enter the name of the file you want to create:" <<std::endl;
             std::getline(std::cin, IndivCommand);
-
-            std::ofstream file(IndivCommand);
-
-            file << DJLibrary->songsInfo();
-
-            file << "\n";
-            file << "*";
-
-            file << DJLibrary->playlistsInfo();
-            file.close();
+            libraryToFile(DJLibrary, IndivCommand);
+            std::cout<<"Library written to file " <<IndivCommand <<std::endl;
             program = false;
 
-
-            //we may have to revist this and deal with deconstruction or something, idk
         } else{
             std::cout<<"Error. System could not process your command." <<std::endl;
             std::cout<<"Please try again." <<std::endl;
@@ -254,30 +280,128 @@ void userInterface(){
     }
 }
 
+void songTester(){
+    Song* song1 = new Song("Boop", "Bop", 3.5);
+    Song* song2 = new Song("", "", 0.0);
+
+    std::cout<<"Testing getArtist" <<std::endl;
+    printAssertEquals("Bop", song1->getArtist());
+    printAssertEquals("", song2->getArtist());
+
+    std::cout<<"Testing getSong" <<std::endl;
+    printAssertEquals("Boop", song1->getTitle());
+    printAssertEquals("", song2->getTitle());
+
+    std::cout<<"Testing getDuration" <<std::endl;
+    printAssertEquals(3.5, song1->getDuration());
+    printAssertEquals(0.0, song2->getDuration());
+
+    std::cout<<"Testing getInfo" <<std::endl;
+    printAssertEquals("Bop-Boop-3.5-0", song1->getInfo());
+    printAssertEquals("--0.0-0", song2->getInfo());
+
+    song1->addToPlayCount();
+    song2->addToPlayCount();
+
+    std::cout<<"Testing addToPlayCount" <<std::endl;
+    printAssertEquals("Bop-Boop-3.5-1", song1->getInfo());
+    printAssertEquals("--0.0-1", song2->getInfo());
+
+    delete song1;
+    delete song2;
+}
+
+void playlistTester(){
+    Song* song1 = new Song("A", "A", 3.0);
+    Song* song2 = new Song("B", "B", 2.0);
+    Song* song3 = new Song("C", "C", 3.0);
+    Song* song4 = new Song("D", "D", 4.0);
+    Song* song5 = new Song("E", "E", 3.0);
+    Song* song6 = new Song("F", "F", 2.0);
+    Song* song7 = new Song("G", "G", 3.0);
+
+    Playlist* playlist1 = new Playlist("Test1");
+    Playlist* playlist2 = new Playlist("Test2");
+
+    std::cout<<"Testing isEmpty" <<std::endl;
+    printAssertEquals(true, playlist1->isEmpty());
+    playlist1->addSong(song1);
+    playlist1->addSong(song2);
+    playlist1->addSong(song3);
+    printAssertEquals(false, playlist1->isEmpty());
+
+    playlist2->addSong(song1);
+    playlist2->addSong(song2);
+    playlist2->addSong(song3);
+    playlist2->addSong(song4);
+    playlist2->addSong(song5);
+    playlist2->addSong(song6);
+    playlist2->addSong(song7);
+
+    std::cout<<"Testing getInfo" <<std::endl;
+    std::cout<<playlist1->getInfo() <<std::endl;
+
+    std::cout<<"Testing removeSong" <<std::endl;
+    playlist1->removeSong("A", "A");
+    playlist1->removeSong("C", "C");
+    printAssertEquals(false, playlist1->isEmpty());
+    playlist1->removeSong("B", "B");
+    printAssertEquals(true, playlist1->isEmpty());
+
+
+
+
+    delete playlist1;
+    delete playlist2;
+}
+
+void songListTester(){
+
+}
+
+void songLinkedTester(){
+
+}
+
+void interfaceTester(){
+
+}
+
+void fileTester(){
+
+}
+
+
 void tester(){
     std::cout <<"Song Class Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    songTester();
 
     std::cout <<"Playlist Class Tester" << std::endl;
-
-
+    std::cout <<"-----------------" <<std::endl;
+    playlistTester();
 
     std::cout <<"SongList Class Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    songListTester();
 
     std::cout <<"SongLinked Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    songLinkedTester();
 
+    std::cout <<"Interface Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    interfaceTester();
 
-    std::cout <<"Song Class Tester" << std::endl;
-
-
-    std::cout <<"FileOut Tester" << std::endl;
-
+    std::cout <<"File Tester" << std::endl;
+    std::cout <<"-----------------" <<std::endl;
+    fileTester();
 }
 
 int main(){
     srand(time(NULL));
     userInterface();
     tester();
-
 
     return 0;
 }

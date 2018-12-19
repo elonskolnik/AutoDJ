@@ -22,7 +22,6 @@ public:
 	std::string getTitle();
 	float getDuration();
 	void addToPlayCount();
-	void addToPlayCount(int i);
 };
 
 
